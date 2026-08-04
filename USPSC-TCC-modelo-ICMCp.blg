@@ -1,0 +1,82 @@
+This is BibTeX, Version 0.99e (TeX Live 2026)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: USPSC-TCC-modelo-ICMCp.aux
+The style file: USPSC-classe/abntex2-alf-USPSC.bst
+A level-1 auxiliary file: USPSC-TA-PreTextual/USPSC-CapaICMC.aux
+A level-1 auxiliary file: USPSC-TA-PreTextual/USPSC-Errata.aux
+A level-1 auxiliary file: USPSC-TA-PreTextual/USPSC-Dedicatoria.aux
+A level-1 auxiliary file: USPSC-TA-PreTextual/USPSC-Agradecimentos.aux
+A level-1 auxiliary file: USPSC-TA-PreTextual/USPSC-Epigrafe.aux
+A level-1 auxiliary file: USPSC-TA-PreTextual/USPSC-Resumo.aux
+A level-1 auxiliary file: USPSC-TA-PreTextual/USPSC-Abstract.aux
+A level-1 auxiliary file: USPSC-TA-PreTextual/USPSC-AbreviaturasSiglas.aux
+A level-1 auxiliary file: USPSC-TA-PreTextual/USPSC-Simbolos.aux
+A level-1 auxiliary file: USPSC-TA-Textual/USPSC-Cap1-Introducao.aux
+A level-1 auxiliary file: USPSC-TA-Textual/USPSC-Cap2-Desenvolvimento.aux
+A level-1 auxiliary file: USPSC-TA-Textual/USPSC-Cap3-Conclusao.aux
+A level-1 auxiliary file: USPSC-TA-PosTextual/USPSC-Apendices.aux
+A level-1 auxiliary file: USPSC-TA-PosTextual/USPSC-Anexos.aux
+A level-1 auxiliary file: USPSC-TA-PosTextual/USPSC-IndicesRemissivos.aux
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+"t" can't follow a literal---line 1293 of file USPSC-classe/abntex2-alf-USPSC.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Database file #1: abntex2-options.bib
+Database file #2: USPSC-bib/USPSC-modelo-references.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
++---------------------------------------------------------+
+| Estilo bibliográfico abntex2-alf.bst versão v-1.9.7           |
+| Em caso de dúvidas ou problemas com este estilo procure |
+| http://www.abntex.net.br/                               |
++---------------------------------------------------------+
+You've used 13 entries,
+            6708 wiz_defined-function locations,
+            1231 strings with 10452 characters,
+and the built_in function-call counts, 4111 in all, are:
+= -- 370
+> -- 3
+< -- 3
++ -- 57
+- -- 3
+* -- 164
+:= -- 446
+add.period$ -- 4
+call.type$ -- 16
+change.case$ -- 41
+chr.to.int$ -- 14
+cite$ -- 1
+duplicate$ -- 83
+empty$ -- 615
+format.name$ -- 0
+if$ -- 1183
+int.to.chr$ -- 11
+int.to.str$ -- 3
+missing$ -- 142
+newline$ -- 12
+num.names$ -- 0
+pop$ -- 92
+preamble$ -- 1
+purify$ -- 39
+quote$ -- 0
+skip$ -- 642
+stack$ -- 1
+substring$ -- 121
+swap$ -- 18
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 3
+width$ -- 0
+write$ -- 23
+(There was 1 error message)
