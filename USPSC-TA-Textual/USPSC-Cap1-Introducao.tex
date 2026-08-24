@@ -2,10 +2,175 @@
 % ----------------------------------------------------------
 % Introdução
 % ----------------------------------------------------------
-\chapter[Introdução]{Introdução}
+\chapter{Introdução}
 \label{cap:introducao}
 
-% >>> ESCREVA A INTRODUÇÃO DO SEU TCC <<<
-% Contextualize o tema, apresente o problema, a justificativa,
-% os objetivos (geral e específicos) e a estrutura do trabalho.
-Escreva aqui a introdução do seu trabalho.
+\section{Motivação e Contextualização}
+\label{sec:motivacao}
+
+A preservação do patrimônio histórico e ambiental constitui um dos desafios
+persistentes da contemporaneidade e exige, das instituições de ensino e pesquisa,
+abordagens capazes de converter acervos preservados em experiências
+significativas para o público. Nesse cenário, a Escola Superior de Agricultura
+``Luiz de Queiroz'' (ESALQ), campus da Universidade de São Paulo em Piracicaba,
+ocupa posição singular: seu parque, tombado pelo Conselho de Defesa do Patrimônio
+Histórico, Arqueológico, Artístico e Turístico do Estado de São Paulo, abriga uma
+coleção botânica de valor científico, histórico e paisagístico que funciona,
+cotidianamente, como laboratório vivo e como espaço de lazer para a comunidade
+interna e externa.
+
+A visitação tradicional a esse patrimônio, contudo, opera muito abaixo de seu
+potencial educativo. Na ausência de artefatos que mediem a relação entre o
+visitante e o acervo, a interação tende à passividade: caminha-se entre árvores
+notáveis sem que haja acesso à informação que as torna notáveis. As placas
+físicas de identificação, presentes no parque e referenciadas por um identificador
+institucional --- doravante \textit{esalq\_id} ---, resolvem apenas parcialmente o
+problema, pois carregam pouca informação e não estabelecem qualquer percurso ou
+narrativa entre exemplares. Para preencher essa lacuna, foi desenvolvido o
+ecossistema \textbf{Trilha das Árvores}, composto por um aplicativo móvel
+destinado ao visitante, um painel administrativo web destinado à gestão de
+conteúdo pela ESALQ e uma API central que sustenta ambos.
+
+A área de pesquisa deste trabalho situa-se na Engenharia de Computação, com foco
+em Interação Humano-Computador (IHC) e Experiência do Usuário (UX). A escolha não
+é acessória ao projeto: é constitutiva dele. O \textit{Trilha das Árvores} propõe
+uma atividade que é, simultaneamente, física e digital --- percorrer um trajeto
+real no parque, orientar-se por um mapa em tempo real e validar a chegada a cada
+checkpoint pela leitura do QR Code afixado na placa da árvore. Nesse arranjo, o
+software disputa atenção com o próprio ambiente que pretende valorizar. Se a
+interface for confusa, a carga cognitiva do visitante desloca-se do desafio
+ambiental para a resolução de problemas de navegação na tela, e o aplicativo
+converte-se em obstáculo àquilo que deveria mediar.
+
+A motivação deste trabalho decorre dessa tensão. Interessa avaliar e refinar a
+experiência do usuário do \textit{Trilha das Árvores} de modo que a tecnologia
+opere como \emph{facilitadora invisível} da imersão ambiental. A expressão não é
+retórica: ela enuncia um critério de qualidade verificável, segundo o qual o
+mérito da interface se mede pela proporção da atenção do usuário que ela
+\emph{não} consome.
+
+\section{Problema de Pesquisa e Hipótese}
+\label{sec:problema}
+
+Avaliar usabilidade em campo, durante uma atividade física, apresenta uma
+dificuldade metodológica que não se manifesta em avaliações de laboratório: a
+\textbf{ambiguidade da origem do atrito}. Quando um participante hesita diante da
+tela, essa hesitação pode decorrer de um rótulo ambíguo, mas também do reflexo do
+sol no visor, do cansaço da caminhada, de uma oscilação no sinal de GPS ou,
+simplesmente, do desafio de orientação espacial que a atividade propõe
+deliberadamente. Métricas agregadas de desempenho --- tempo de tarefa, taxa de
+erro, número de toques --- registram a hesitação, mas são incapazes de atribuí-la
+a uma causa. Um aplicativo cuja proposta inclui um componente de desafio não pode
+ser avaliado por instrumentos que tratem toda dificuldade como defeito.
+
+Formula-se, assim, a seguinte questão de pesquisa:
+
+\begin{quote}
+\textit{Em que medida a interface do aplicativo Trilha das Árvores atua como
+facilitadora, e não como obstáculo, na realização de uma atividade de exploração
+ambiental em campo --- e como distinguir, na avaliação, as dificuldades
+originadas na interface daquelas inerentes ao desafio proposto?}
+\end{quote}
+
+Deriva-se dessa questão a hipótese de trabalho de que os pontos de atrito
+percebidos pelo usuário não se originam exclusivamente na camada de apresentação,
+mas emergem de decisões tomadas ao longo de toda a pilha tecnológica --- da
+estratégia de persistência de imagens à política de tratamento de erros de rede.
+Se a hipótese se sustenta, então é possível construir uma \textbf{matriz de
+rastreabilidade} que associe cada atrito observado a uma heurística de usabilidade
+violada e à decisão de engenharia que a originou, tornando os resultados da
+avaliação diretamente acionáveis pela equipe de desenvolvimento. A construção e a
+verificação empírica dessa matriz constituem a contribuição central deste
+trabalho.
+
+\section{Objetivos}
+\label{sec:objetivos}
+
+\subsection{Objetivo geral}
+
+Avaliar a usabilidade e a experiência do usuário do aplicativo móvel
+\textit{Trilha das Árvores} por meio de uma abordagem de métodos mistos, que
+combina inspeção por especialista e estudo empírico com usuários finais em campo,
+de modo a produzir recomendações de melhoria rastreáveis até as decisões de
+engenharia que as motivam.
+
+\subsection{Objetivos específicos}
+
+\begin{alineas}
+  \item \textbf{Caracterizar arquiteturalmente o ecossistema.} Documentar a
+  integração entre o aplicativo móvel (React Native/Expo), o painel administrativo
+  (React) e o backend (Flask/PostgreSQL), identificando as decisões técnicas com
+  potencial impacto sobre a experiência do usuário e consolidando-as em um
+  mapeamento explícito entre decisão técnica, efeito percebido e heurística
+  associada.
+
+  \item \textbf{Realizar avaliação heurística.} Inspecionar a interface do
+  aplicativo à luz das dez heurísticas de \citeonline{nielsen1994heuristic},
+  registrando cada violação com a heurística correspondente e um grau de
+  severidade, e aplicar as correções decorrentes antes do contato com o usuário
+  final.
+
+  \item \textbf{Definir o perfil de usuário.} Elaborar personas fundamentadas no
+  público-alvo do parque, que orientem tanto a seleção de participantes quanto o
+  desenho das tarefas do estudo empírico.
+
+  \item \textbf{Conduzir avaliação inicial com usuários em campo.} Executar um
+  estudo observacional com um número reduzido de participantes, sob protocolo
+  \textit{Think-Aloud} concomitante e complementado por entrevista pós-tarefa,
+  classificando cada dificuldade observada quanto à sua origem: interface,
+  desafio proposto, infraestrutura ou dívida técnica.
+
+  \item \textbf{Mensurar a aceitação tecnológica.} Aplicar instrumento baseado no
+  \textit{Technology Acceptance Model} (TAM) para quantificar Utilidade Percebida,
+  Facilidade de Uso Percebida e Intenção de Uso.
+
+  \item \textbf{Triangular os resultados.} Consolidar evidências qualitativas e
+  quantitativas em uma matriz de rastreabilidade que vincule cada problema
+  observado à heurística violada, à decisão de engenharia de origem e ao construto
+  do TAM impactado, produzindo um plano priorizado de melhorias.
+\end{alineas}
+
+\section{Escopo e Delimitações}
+\label{sec:escopo}
+
+Este trabalho avalia o aplicativo móvel destinado ao visitante. O painel
+administrativo web é descrito no Capítulo~\ref{cap:desenvolvimento} por integrar o
+ecossistema e por condicionar o conteúdo exibido ao visitante, mas não é objeto de
+avaliação empírica com usuários --- seu público é restrito à equipe gestora e sua
+avaliação demandaria um perfil de participante e um conjunto de tarefas distintos.
+
+A avaliação empírica aqui relatada tem caráter \textbf{formativo}: destina-se a
+identificar problemas e orientar melhorias do sistema, e não a produzir uma
+medida somativa e generalizável de qualidade. Trabalha-se, por essa razão, com
+amostra reduzida e sem pretensão de inferência estatística populacional. Essa
+delimitação é deliberada e alinha-se à recomendação metodológica registrada na
+orientação do trabalho, segundo a qual o estágio atual do projeto configura uma
+avaliação inicial voltada ao aprimoramento do sistema, à qual poderá suceder uma
+nova rodada de testagem após a implementação das correções.
+
+Não integram o escopo: a avaliação de qualidades hedônicas da interface por
+instrumentos como o AttrakDiff ou o UEQ, cuja justificativa de exclusão é
+apresentada na Seção~\ref{sec:justificativa_mista}; a avaliação de acessibilidade
+segundo a WCAG; e a mensuração de desempenho energético ou de consumo de dados do
+aplicativo.
+
+\section{Organização do Trabalho}
+\label{sec:organizacao}
+
+O restante desta monografia organiza-se como segue. O
+Capítulo~\ref{cap:fundamentacao} apresenta a fundamentação teórica, cobrindo os
+conceitos de usabilidade e experiência do usuário segundo as normas ISO, o
+desenvolvimento móvel multiplataforma, os métodos de avaliação empregados ---
+avaliação heurística, protocolo \textit{Think-Aloud} e \textit{Technology
+Acceptance Model} --- e a justificativa da abordagem mista adotada, incluindo os
+motivos da exclusão de métodos alternativos. O Capítulo~\ref{cap:desenvolvimento}
+descreve o ecossistema \textit{Trilha das Árvores}: sua arquitetura, cada um de
+seus módulos, as decisões de engenharia relevantes para a experiência do usuário e
+as limitações identificadas na implementação atual, consolidadas no mapeamento
+entre decisão técnica e heurística. O Capítulo~\ref{cap:metodologia} detalha a
+metodologia da avaliação: personas, participantes e aspectos éticos, o roteiro de
+tarefas, o protocolo de condução do \textit{Think-Aloud}, o instrumento TAM e o
+plano de análise. O Capítulo~\ref{cap:resultados} apresenta e discute os
+resultados obtidos. Por fim, o Capítulo~\ref{cap:conclusao} retoma os objetivos,
+sintetiza as contribuições, tece considerações sobre o curso de graduação e aponta
+perspectivas de trabalhos futuros.
