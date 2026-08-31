@@ -1,0 +1,590 @@
+%% USPSC-Cap4-Metodologia.tex
+% ----------------------------------------------------------
+% Metodologia da Avaliação
+% ----------------------------------------------------------
+\chapter{Metodologia da Avaliação}
+\label{cap:metodologia}
+
+\section{Considerações Iniciais}
+\label{sec:met_consideracoes}
+
+Este capítulo detalha o desenho metodológico da avaliação de experiência do
+usuário do aplicativo \textit{Trilha das Árvores}. Descreve o delineamento geral e
+seu encadeamento em rodadas, a caracterização do público-alvo por proto-personas,
+os critérios de recrutamento e os aspectos éticos, o aparato técnico empregado, o
+roteiro de tarefas, o protocolo de condução da observação, os instrumentos de
+coleta e o plano de análise.
+
+\section{Delineamento do Estudo}
+\label{sec:delineamento}
+
+A avaliação adota delineamento de métodos mistos, de caráter \textbf{formativo},
+executado em fases sequenciais e complementares. Conforme delimitado na
+Seção~\ref{sec:escopo}, não se pretende produzir medida somativa generalizável,
+mas identificar problemas e orientar melhorias verificáveis.
+
+O estudo organiza-se em duas rodadas de avaliação separadas por um ciclo de
+correções, segundo o modelo de projeto iterativo:
+
+\begin{alineas}
+  \item \textbf{Fase 0 --- Avaliação Heurística.} Inspeção da interface à luz das
+  dez heurísticas apresentadas no Quadro~\ref{quad:heuristicas}, com registro de
+  cada violação, heurística associada e grau de severidade. As correções
+  decorrentes são aplicadas antes do contato com usuários, de modo que o
+  participante avalie o conceito de mediação e não defeitos elementares de
+  interface.
+
+  \item \textbf{Fase 1 --- Avaliação inicial com usuários.} Estudo observacional
+  em campo, sob protocolo \textit{Think-Aloud} híbrido segmentado, seguido de
+  entrevista semiestruturada e da aplicação do instrumento TAM.
+
+  \item \textbf{Fase 2 --- Ciclo de correções.} Implementação das melhorias
+  priorizadas a partir dos achados da Fase 1, com registro da rastreabilidade
+  entre cada correção e o achado que a motivou.
+
+  \item \textbf{Fase 3 --- Reavaliação.} Repetição do protocolo da Fase 1, com
+  participantes distintos e sob condições equivalentes, para verificar se os
+  atritos corrigidos deixaram de se manifestar.
+\end{alineas}
+
+\section{Caracterização do Público-Alvo}
+\label{sec:personas}
+
+\subsection{Opção por proto-personas}
+
+Conforme fundamentado na Seção~\ref{sec:personas_teoria}, este trabalho não dispõe
+de pesquisa prévia sobre o perfil de visitação do parque. Adotam-se, portanto,
+\textbf{proto-personas}: perfis que explicitam as premissas assumidas sobre o
+público-alvo, formulados como hipótese a ser verificada com os dados coletados.
+Os perfis foram construídos a partir de quatro eixos de diferenciação com
+consequência direta sobre a interface: a motivação da visita, a familiaridade com
+o parque, a relação com o esforço físico e o perfil de uso do dispositivo em
+campo.
+
+% ============================================================================
+% >>> [OPCIONAL --- FIGURAS DAS PROTO-PERSONAS] <<<
+% Se optar por apresentar as proto-personas em formato de cartão visual,
+% gerar as imagens, salvar em USPSC-img/ e incluí-las aqui.
+% ============================================================================
+
+\subsection{Proto-persona 1 --- motivação botânica}
+
+Estudante de graduação em área correlata às ciências biológicas, com idade
+próxima a 21 anos, externa à ESALQ, em primeira visita ao parque. Sua motivação é
+o reconhecimento das espécies: deseja identificar as árvores e obter informação
+sobre elas. Não conhece a topografia do campus. Utiliza o celular com desenvoltura,
+mas com restrição de bateria e de franquia de dados. O aplicativo lhe é útil na
+medida em que identifica corretamente o exemplar diante do qual ela se encontra e
+entrega a informação no momento em que ela está parada diante dele. O atrito
+esperado decorre da ênfase da interface em métricas de percurso, em detrimento do
+conteúdo botânico.
+
+\subsection{Proto-persona 2 --- motivação de esforço físico}
+
+Pós-graduando com idade próxima a 24 anos, praticante regular de corrida,
+familiarizado com aplicativos de registro de atividade física. Interpreta a trilha
+como percurso cronometrado e demanda fricção mínima: não deseja interromper o
+deslocamento para ler a tela. O aplicativo lhe é útil na medida em que suas
+métricas sejam legíveis de relance, com o dispositivo em movimento e sob
+luminosidade elevada. O atrito esperado decorre de alvos de toque reduzidos, de
+contraste insuficiente sob sol direto e da ambiguidade entre distância percorrida
+e distância restante.
+
+\subsection{Proto-persona 3 --- motivação de lazer}
+
+Moradora da região, com idade próxima a 26 anos, sem formação na área ambiental,
+em visita de fim de semana acompanhada de familiar. Desconhece nomenclatura
+científica e não dispõe de disposição para configurações. Conhece o parque
+visualmente, mas nunca realizou percurso guiado. Utiliza dispositivo de
+especificação intermediária e manifesta reserva quanto à concessão de permissões.
+O aplicativo lhe é útil na medida em que a proposta seja compreensível em poucos
+segundos e o início não exija auxílio. O atrito esperado decorre da solicitação de
+permissões sem justificativa contextualizada e da exibição de dados não
+integrados, que compromete a confiança no sistema.
+
+\subsection{Antipersona}
+
+Estudante ou servidor da própria ESALQ, com circulação diária pelo parque e
+capacidade de nomear os exemplares sem auxílio. Esse perfil não constitui público
+do aplicativo, cuja proposta de valor é a mediação para quem não dispõe desse
+repertório. A explicitação da antipersona cumpre função metodológica: fundamenta o
+critério de exclusão adotado no recrutamento e responde antecipadamente à
+objeção quanto à não utilização de participantes disponíveis no próprio campus.
+
+\section{Participantes, Recrutamento e Aspectos Éticos}
+\label{sec:participantes}
+
+\subsection{Dimensionamento da amostra}
+
+A etapa observacional emprega número reduzido de participantes, coerente com a
+recomendação consolidada por \citeonline{nielsenlandauer1993} e
+\citeonline{virzi1992} de que um pequeno conjunto de usuários revela a maior parte
+dos problemas de interface, com ganho marginal decrescente a partir de cinco
+participantes. Adotam-se \textbf{três participantes por rodada}, dimensionamento
+compatível com o caráter formativo do estudo e com os recursos disponíveis, e
+consonante com a orientação metodológica registrada para o projeto.
+
+\subsection{Critérios de inclusão e exclusão}
+
+Os critérios apresentados no Quadro~\ref{quad:recrutamento} derivam diretamente
+das proto-personas e da antipersona.
+
+\begin{quadro}[htb]
+\centering
+\caption{Critérios de recrutamento de participantes}
+\label{quad:recrutamento}
+\begin{tabular}{p{2.8cm} p{10.0cm}}
+\toprule
+\textbf{Critério} & \textbf{Definição} \\
+\midrule
+Inclusão & Idade entre 20 e 26 anos; nunca ter utilizado o aplicativo; nunca ter
+realizado percurso guiado no parque; ausência de limitação de mobilidade que
+impeça a caminhada; consentimento formal \\
+\addlinespace
+Exclusão & Vínculo de estudo ou trabalho com a ESALQ; participação no
+desenvolvimento do sistema; familiaridade com o parque suficiente para nomear os
+exemplares \\
+\addlinespace
+Variação buscada & Um participante por perfil de motivação, cobrindo as três
+proto-personas \\
+\addlinespace
+Controle & Ausência de familiaridade com o parque mantida constante entre os
+participantes, de modo que dificuldades de orientação sejam atribuíveis à
+interface ou ao ambiente, e não ao conhecimento prévio do percurso \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+\subsection{Não reutilização de participantes entre rodadas}
+
+A Fase 3 emprega \textbf{participantes distintos} dos da Fase 1. A justificativa é
+o efeito de aprendizagem: parcela substancial do que se avalia é a
+aprendibilidade da interface, atributo que existe apenas no primeiro contato. Um
+participante que já percorreu a trilha conhece a mecânica de validação por QR
+Code, a localização dos controles e o significado dos indicadores; seu eventual
+melhor desempenho na segunda rodada seria indistinguível entre efeito do
+redesenho e efeito da experiência prévia, confundimento que não admite correção
+estatística em amostra desta dimensão. Mantém-se constante, entre as rodadas, o
+\textbf{perfil} dos participantes e não sua identidade, de modo que a diferença
+observada seja atribuível ao redesenho.
+
+Registra-se a possibilidade de retorno de um participante da primeira rodada, após
+a conclusão das sessões da segunda, exclusivamente como verificação confirmatória
+pontual quanto à resolução de um problema específico por ele vivenciado. Tal
+participação, se ocorrer, será relatada à parte e \textbf{não integrará} a amostra
+da segunda rodada.
+
+\subsection{Aspectos éticos}
+
+A participação é voluntária e precedida da assinatura do Termo de Consentimento
+Livre e Esclarecido, que assegura anonimato, confidencialidade, uso estritamente
+acadêmico dos dados, informação sobre a gravação de áudio e de tela, e direito de
+desistência a qualquer momento sem necessidade de justificativa. Não há gravação
+de imagem do participante. Os registros são identificados por código sequencial e
+armazenados em meio de acesso restrito.
+
+% ============================================================================
+% >>> [PREENCHER --- SITUAÇÃO JUNTO AO COMITÊ DE ÉTICA] <<<
+% Redigir aqui o desfecho da consulta à coordenação da pesquisa quanto à
+% exigência de submissão do protocolo ao Comitê de Ética em Pesquisa (CEP),
+% por se tratar de estudo com seres humanos com registro de áudio.
+% Informar: se houve submissão, o número do parecer e a data de aprovação;
+% ou a justificativa formal de dispensa.
+% ============================================================================
+
+\section{Aparato Técnico e Padronização das Condições}
+\label{sec:aparato}
+
+\subsection{Padronização do dispositivo}
+
+Todas as sessões utilizam um \textbf{único dispositivo}, fornecido pelo
+pesquisador e idêntico para todos os participantes. A decisão elimina a variação
+introduzida por diferenças de sistema operacional, dimensão e densidade de tela,
+conjunto de ícones do sistema e desempenho de hardware --- variáveis que afetariam
+diretamente a usabilidade observada e cuja influência não seria separável dos
+efeitos da interface avaliada.
+
+Antes de cada sessão, o aplicativo tem seus dados reinicializados e suas permissões
+revogadas, de modo que cada participante encontre o sistema em estado idêntico e
+seja exposto aos diálogos de solicitação de permissão, cuja recepção constitui
+objeto de observação.
+
+% ============================================================================
+% >>> [PREENCHER --- ESPECIFICAÇÃO DOS COMPONENTES TÉCNICOS] <<<
+%
+% Espaço reservado, conforme planejado, para a descrição do aparato.
+% Preencher o Quadro abaixo com os dados reais e redigir, em seguida, um
+% parágrafo justificando as escolhas.
+%
+% Itens a documentar:
+%   - Dispositivo: fabricante, modelo, versão do sistema operacional,
+%     dimensão e resolução de tela, memória, capacidade de bateria.
+%   - Aplicativo do sistema sob teste: número da versão / identificador do
+%     build utilizado nas sessões (essencial: a Fase 3 usa outro build, e a
+%     comparação entre rodadas exige que ambos estejam identificados).
+%   - Gravação de tela: aplicativo utilizado, resolução, taxa de quadros,
+%     se captura áudio interno.
+%   - Gravação de áudio: modelo do microfone (lapela / direcional),
+%     dispositivo de registro, taxa de amostragem, formato do arquivo.
+%   - Cronometragem: instrumento independente utilizado.
+%   - Conectividade: operadora, tecnologia de acesso disponível no local.
+%   - Energia: bateria externa, capacidade.
+%   - Material impresso: relação dos formulários levados a campo.
+% ============================================================================
+
+\begin{quadro}[htb]
+\centering
+\caption{Aparato técnico utilizado nas sessões}
+\label{quad:aparato}
+\begin{tabular}{p{4.2cm} p{8.6cm}}
+\toprule
+\textbf{Componente} & \textbf{Especificação} \\
+\midrule
+Dispositivo móvel & \textit{[preencher]} \\
+Sistema operacional & \textit{[preencher]} \\
+Versão do aplicativo & \textit{[preencher --- Fase 1]} \\
+Gravação de tela & \textit{[preencher]} \\
+Microfone & \textit{[preencher]} \\
+Dispositivo de gravação de áudio & \textit{[preencher]} \\
+Cronômetro & \textit{[preencher]} \\
+Conectividade & \textit{[preencher]} \\
+Alimentação auxiliar & \textit{[preencher]} \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+\subsection{Padronização das condições ambientais}
+
+Conforme argumentado na Seção~\ref{sec:contexto_movel}, as condições ambientais
+integram o contexto de uso e, portanto, o objeto da avaliação. A estratégia
+adotada não é sua eliminação, mas sua \textbf{padronização e registro}. Assim:
+
+\begin{alineas}
+  \item todas as sessões ocorrem no mesmo período do dia, na mesma trilha, com o
+  mesmo ponto de partida e a mesma ordem de tarefas;
+
+  \item são suspensas as sessões em condição de chuva, que inviabiliza a operação
+  da tela sensível ao toque e introduz risco ao participante;
+
+  \item as condições efetivas de cada sessão --- data, horário de início e
+  término, temperatura, cobertura de nuvens e ocorrência de chuva nas horas
+  precedentes --- são registradas em cabeçalho da ficha de observação;
+
+  \item as mesmas condições são replicadas na Fase 3, de modo que a comparação
+  entre rodadas não seja confundida por variação ambiental.
+\end{alineas}
+
+\subsection{Aferição do esforço físico percebido}
+
+O condicionamento físico dos participantes não é passível de equalização. Adota-se,
+por essa razão, sua conversão em \textbf{variável registrada}: ao término das
+tarefas, antes da entrevista, aplica-se item único de esforço percebido, adaptado
+da escala de percepção subjetiva de esforço de \citeonline{borg1982}, em amplitude
+de 0 a 10. O registro permite verificar a homogeneidade do esforço entre
+participantes e sustentar, ou refutar, a atribuição dos atritos observados à
+fadiga.
+
+\section{Roteiro de Tarefas}
+\label{sec:tarefas}
+
+As tarefas são enunciadas na forma de \textbf{cenário}, e não como instrução
+contendo o nome do controle a ser acionado. A formulação evita que o enunciado
+resolva antecipadamente o problema de localização e reconhecimento que se pretende
+observar. O Quadro~\ref{quad:tarefas} apresenta o conjunto.
+
+\begin{quadro}[htb]
+\centering
+\caption{Roteiro de tarefas do estudo empírico}
+\label{quad:tarefas}
+\footnotesize
+\begin{tabular}{c p{4.4cm} p{3.4cm} p{3.2cm}}
+\toprule
+\textbf{\#} & \textbf{Cenário apresentado} & \textbf{Elementos verificados} &
+\textbf{Critério de conclusão} \\
+\midrule
+T1 & Descobrir o que o aplicativo faz e escolher uma trilha & Tela inicial e
+listagem; compreensão da proposta & Alcança a tela de uma trilha e verbaliza a
+proposta \\
+\addlinespace
+T2 & Relatar o que a trilha escolhida exigirá & Tela de preparação; lista de
+verificação & Verbaliza distância, número de \textit{checkpoints} e exigências \\
+\addlinespace
+T3 & Chegar ao primeiro \textit{checkpoint} & Mapa, marcadores, bússola,
+permissão de localização & Chega ao ponto sem auxílio \\
+\addlinespace
+T4 & Registrar a chegada ao \textit{checkpoint} & Leitura de QR Code; permissão de
+câmera; estados de retorno & Realiza a leitura e reconhece a confirmação \\
+\addlinespace
+T5 & Relatar o estado corrente da atividade sem tocar na tela & Progresso,
+cronômetro, distância & Interpreta corretamente os três indicadores \\
+\addlinespace
+T6 & Retomar a atividade após interrupção externa & Suspensão e retomada & Retoma
+no ponto correto sem reiniciar \\
+\addlinespace
+T7 & Concluir a trilha e relatar o desempenho & Tela de conclusão & Interpreta
+tempo e distância finais \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+Registra-se ainda uma observação não induzida: caso o participante alcance
+espontaneamente a tela de perfil, cuja limitação está registrada no
+Quadro~\ref{quad:mapeamento}, sua reação é integralmente documentada. A ausência de
+visita espontânea constitui, igualmente, dado.
+
+\section{Procedimento de Coleta}
+\label{sec:procedimento}
+
+Cada sessão segue roteiro padronizado, idêntico para todos os participantes, com
+duração aproximada de setenta e cinco minutos, distribuída conforme o
+Quadro~\ref{quad:sessao}.
+
+\begin{quadro}[htb]
+\centering
+\caption{Estrutura da sessão de avaliação}
+\label{quad:sessao}
+\begin{tabular}{p{6.4cm} p{2.0cm} p{4.4cm}}
+\toprule
+\textbf{Etapa} & \textbf{Duração} & \textbf{Registro} \\
+\midrule
+Acolhimento e enquadramento & 5 min & Áudio \\
+Leitura e assinatura do TCLE & 5 min & Documento \\
+Apresentação mínima do aplicativo & 3 min & Áudio \\
+Explicação do protocolo & 4 min & Áudio \\
+Treino de verbalização & 5 min & Áudio \\
+Coleta de dados demográficos & 3 min & Ficha \\
+Execução das tarefas & 30--45 min & Áudio, tela, ficha \\
+Recuperação retrospectiva assistida & 5 min & Áudio \\
+Item de esforço percebido & 1 min & Ficha \\
+Entrevista semiestruturada & 10--15 min & Áudio \\
+Instrumento TAM & 7 min & Formulário \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+A sessão é conduzida por dois pesquisadores, com papéis separados: um modera e
+cronometra, outro preenche a ficha de observação e registra os instantes dos
+episódios de atrito, posteriormente utilizados para selecionar os trechos da
+recuperação retrospectiva assistida. O roteiro integral de moderação, incluindo as
+falas de enquadramento, as tarefas e as regras de intervenção, consta do
+Apêndice~\ref{ape:roteiro}.
+
+\subsection{Ficha de observação}
+
+Cada episódio de atrito é registrado em uma linha da ficha estruturada, com os
+campos: tarefa; instante de ocorrência; conclusão da tarefa, classificada em
+autônoma, com auxílio --- indicando o grau da ajuda escalonada --- ou falha;
+verbalização literal associada; heurística tocada, conforme a numeração do
+Quadro~\ref{quad:heuristicas}; origem do atrito, conforme a classificação da
+Seção~\ref{sec:gamificacao}; e severidade, conforme o
+Quadro~\ref{quad:severidade}.
+
+\section{Instrumento de Aceitação Tecnológica}
+\label{sec:instrumento_tam}
+
+\subsection{Composição do instrumento}
+
+O instrumento foi elaborado a partir dos construtos originais de
+\citeonline{davis1989}, com adaptação da redação dos itens ao contexto de uso do
+aplicativo. É composto por dez itens, distribuídos em três construtos, e aplicado
+em escala Likert de sete pontos ancorada nos extremos por ``Discordo Totalmente''
+e ``Concordo Totalmente'', com ponto neutro central. O instrumento é
+autoaplicado, em formulário eletrônico, imediatamente após a entrevista, ainda em
+campo. O Quadro~\ref{quad:tam} apresenta os itens conforme aplicados.
+
+\begin{quadro}[htb]
+\centering
+\caption{Itens do instrumento baseado no Technology Acceptance Model}
+\label{quad:tam}
+\footnotesize
+\begin{tabular}{p{1.4cm} p{11.4cm}}
+\toprule
+\textbf{Código} & \textbf{Item} \\
+\midrule
+\multicolumn{2}{l}{\textbf{Facilidade de Uso Percebida (PEOU)}} \\
+\midrule
+PEOU1 & Minha interação com o aplicativo \textit{Trilha das Árvores} é clara e
+compreensível \\
+PEOU2 & Interagir com o aplicativo \textit{Trilha das Árvores} não exige muito do
+meu esforço mental \\
+PEOU3 & Considero o aplicativo \textit{Trilha das Árvores} fácil de usar \\
+PEOU4 & Eu acho fácil conseguir que o aplicativo \textit{Trilha das Árvores} faça
+o que eu quero que ele faça \\
+\midrule
+\multicolumn{2}{l}{\textbf{Utilidade Percebida (PU)}} \\
+\midrule
+PU1 & Usar o aplicativo \textit{Trilha das Árvores} melhorou o meu desempenho na
+realização da trilha\footnotemark \\
+PU2 & Usar o aplicativo \textit{Trilha das Árvores} na minha visita melhorou a
+minha produtividade na exploração das trilhas \\
+PU3 & Usar o aplicativo \textit{Trilha das Árvores} aumenta a minha eficácia na
+identificação das árvores \\
+PU4 & Eu considero o aplicativo \textit{Trilha das Árvores} útil para explorar o
+parque \\
+\midrule
+\multicolumn{2}{l}{\textbf{Intenção de Uso (ITU)}} \\
+\midrule
+ITU1 & Supondo que eu tenha acesso ao aplicativo \textit{Trilha das Árvores}, eu
+pretendo usá-lo \\
+ITU2 & Levando em conta que eu tenho acesso ao aplicativo \textit{Trilha das
+Árvores}, eu prevejo que eu vou usá-lo \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Elaborado pelo autor, com base em \citeonline{davis1989}.
+\end{flushleft}
+\end{quadro}
+
+\footnotetext{O item PU1 é acompanhado, no formulário, de uma âncora de comparação
+apresentada ao respondente, que o instrui a considerar como referência a
+realização do mesmo percurso com um mapa físico, sem os recursos do aplicativo.}
+
+\subsection{Justificativa da âncora de comparação}
+
+O construto de Utilidade Percebida, tal como formulado por
+\citeonline{davis1989}, pressupõe uma referência implícita: o desempenho
+\textit{sem} o sistema. Em contextos organizacionais, essa referência é evidente
+para o respondente, que conhece o processo anterior à informatização. No contexto
+deste estudo, o participante realiza a trilha \textbf{apenas} com o aplicativo e
+não dispõe de experiência prévia do percurso sem mediação, o que tornaria a
+comparação indeterminada. A explicitação da âncora --- o percurso com mapa físico
+--- restitui ao item a referência que o construto pressupõe. Por essa razão, a
+comparação com o mapa físico é deliberadamente \textbf{excluída} do roteiro da
+entrevista que precede o instrumento, a fim de evitar efeito de priorização sobre
+a resposta.
+
+\subsection{Função do instrumento na primeira rodada}
+
+Com três participantes, os escores obtidos na Fase 1 não admitem tratamento
+inferencial nem estimativa confiável de consistência interna. O instrumento cumpre,
+nessa fase, função de \textbf{validação semântica}: verifica-se se cada item é
+compreendido de forma unívoca, solicitando ao participante que leia o enunciado em
+voz alta e relate o que dele entendeu antes de assinalar a resposta. Registram-se
+as reformulações espontâneas e os termos que suscitem dúvida. Os escores são
+reportados de forma descritiva e individual, sem agregação.
+
+% ============================================================================
+% >>> [PREENCHER --- AJUSTES DE INSTRUMENTAÇÃO APLICADOS] <<<
+% Registrar aqui, para efeito de rastreabilidade, os ajustes realizados no
+% formulário antes da aplicação. Pontos já identificados:
+%
+%   (a) Anonimato: o formulário coletava o endereço de correio eletrônico do
+%       respondente, o que contradiz a declaração de anonimato do próprio
+%       cabeçalho e do TCLE. Desativar a coleta e substituir por código
+%       sequencial de participante (P1, P2, P3).
+%   (b) Redação da âncora do item PU1: revisar a frase de apoio, cuja
+%       formulação atual apresenta erro de concordância e ambiguidade.
+%   (c) Descrição do bloco de Intenção de Uso: o texto de apoio menciona
+%       recomendação a terceiros, dimensão não contemplada por nenhum dos dois
+%       itens. Ajustar a descrição ou acrescentar item correspondente.
+%   (d) Escala: confirmada em sete pontos nos dez itens.
+% ============================================================================
+
+\section{Plano de Análise}
+\label{sec:analise}
+
+\subsection{Dados qualitativos}
+
+As gravações de áudio são integralmente transcritas. As transcrições, articuladas
+aos registros de tela e às fichas de observação, são submetidas a análise temática
+\cite{brauneclarke2006}, com codificação de cada episódio de atrito segundo dois
+eixos independentes: a heurística violada e a origem do atrito. A codificação
+inicial é revista em segunda passagem, e os casos de classificação ambígua são
+registrados como tal, com a justificativa da decisão adotada.
+
+\subsection{Dados quantitativos}
+
+Os dados do instrumento TAM são reportados de forma descritiva, por construto e
+por participante. Os tempos de tarefa, as taxas de conclusão e os graus de auxílio
+são igualmente reportados de forma descritiva. Em rodadas futuras, com amostra
+ampliada, prevê-se a verificação da consistência interna dos construtos por
+coeficiente alfa de \citeonline{cronbach1951}.
+
+\subsection{Triangulação e matriz de rastreabilidade}
+
+A etapa final consiste na construção da matriz de rastreabilidade, instrumento que
+materializa a contribuição enunciada na Seção~\ref{sec:problema}. Cada linha da
+matriz associa um problema observado às seguintes dimensões: a heurística violada;
+a decisão de engenharia que o originou, conforme o Quadro~\ref{quad:mapeamento}; a
+origem do atrito; a severidade; o construto do TAM potencialmente impactado; e a
+correção proposta. O Quadro~\ref{quad:matriz_modelo} apresenta a estrutura da
+matriz, cujo preenchimento consta do Capítulo~\ref{cap:resultados}.
+
+\begin{quadro}[htb]
+\centering
+\caption{Estrutura da matriz de rastreabilidade}
+\label{quad:matriz_modelo}
+\footnotesize
+\begin{tabular}{p{1.0cm} p{2.6cm} p{2.6cm} p{1.6cm} p{1.4cm} p{2.4cm}}
+\toprule
+\textbf{ID} & \textbf{Problema observado} & \textbf{Decisão de origem} &
+\textbf{Origem} & \textbf{Sev.} & \textbf{Correção proposta} \\
+\midrule
+P01 & --- & --- & --- & --- & --- \\
+P02 & --- & --- & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+\section{Ameaças à Validade}
+\label{sec:ameacas}
+
+Registram-se as principais ameaças à validade do estudo e as medidas de mitigação
+adotadas.
+
+\begin{alineas}
+  \item \textbf{Reatividade da verbalização.} A exigência de falar durante a
+  tarefa pode alterar o desempenho. Mitigação: protocolo híbrido segmentado, com
+  verbalização concomitante restrita aos segmentos estacionários, e treino prévio.
+
+  \item \textbf{Viés do moderador.} O moderador é também o desenvolvedor do
+  sistema, o que introduz risco de indução involuntária. Mitigação: roteiro
+  fechado de sondas, lista explícita de formulações proibidas, separação de papéis
+  entre moderador e anotador, e enquadramento inicial que autoriza a crítica.
+
+  \item \textbf{Desejabilidade social.} O participante pode moderar críticas por
+  cortesia. Mitigação: enquadramento explícito de que o objeto avaliado é o
+  sistema; anonimato assegurado; triangulação entre o observado e o declarado.
+
+  \item \textbf{Dimensão da amostra.} Três participantes por rodada não sustentam
+  generalização. Mitigação: caráter declaradamente formativo do estudo e ausência
+  de pretensão inferencial, conforme a Seção~\ref{sec:escopo}.
+
+  \item \textbf{Variação ambiental entre rodadas.} Diferenças de clima ou de
+  horário poderiam ser confundidas com efeito do redesenho. Mitigação:
+  padronização e registro das condições, com replicação na Fase 3.
+
+  \item \textbf{Efeito de aprendizagem.} Mitigação: participantes distintos entre
+  rodadas, conforme a Seção~\ref{sec:participantes}.
+\end{alineas}
+
+\section{Considerações Finais}
+\label{sec:met_finais}
+
+Este capítulo detalhou o desenho da avaliação em suas quatro fases, a
+caracterização do público por proto-personas, os critérios de recrutamento e os
+aspectos éticos, o aparato técnico e a estratégia de padronização das condições, o
+roteiro de tarefas, o procedimento de coleta, o instrumento de aceitação
+tecnológica e o plano de análise, encerrando com o registro das ameaças à validade
+e das medidas de mitigação. O capítulo seguinte apresenta os resultados obtidos.

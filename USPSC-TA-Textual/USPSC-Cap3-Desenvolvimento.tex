@@ -1,0 +1,380 @@
+%% USPSC-Cap3-Desenvolvimento.tex
+% ----------------------------------------------------------
+% Desenvolvimento
+% ----------------------------------------------------------
+\chapter{O Ecossistema Trilha das Árvores}
+\label{cap:desenvolvimento}
+
+\section{Considerações Iniciais}
+\label{sec:dev_consideracoes}
+
+Este capítulo descreve a arquitetura do ecossistema \textit{Trilha das Árvores} e
+articula a relação entre as decisões de engenharia de software e a experiência do
+usuário delas decorrente. Parte-se da premissa, enunciada na
+Seção~\ref{sec:problema}, de que em uma aplicação de uso externo e em movimento a
+qualidade percebida da interação não é produto exclusivo do projeto de interface:
+ela emerge de toda a pilha tecnológica, da estratégia de persistência de imagens à
+política de tratamento de erros de rede.
+
+A descrição a seguir refere-se ao estado do sistema no momento da avaliação, tal
+como verificado diretamente no código-fonte dos três repositórios que compõem o
+projeto. Onde a implementação atual diverge do que seria a solução arquitetural
+desejável, o texto registra a divergência de forma explícita, uma vez que essas
+divergências constituem hipóteses verificáveis no estudo empírico e não meros
+apontamentos de engenharia.
+
+\section{Visão Geral da Arquitetura}
+\label{sec:arquitetura}
+
+O \textit{Trilha das Árvores} adota arquitetura cliente-servidor conteinerizada,
+organizada em camadas de responsabilidade delimitadas. O sistema é composto por
+dois clientes --- o aplicativo móvel, destinado ao visitante, e o painel
+administrativo web, destinado à gestão de conteúdo pela ESALQ --- que se
+comunicam por HTTP, com carga útil em JSON, com uma API REST central. Essa API
+concentra a lógica de negócio e persiste os dados em um banco relacional.
+
+A adoção do estilo arquitetural REST \cite{fielding2000} confere ao sistema
+separação clara entre cliente e servidor e comunicação sem estado, propriedades
+que favorecem a evolução independente das interfaces e a previsibilidade do
+comportamento observado pelo usuário.
+
+O fluxo de dados percorre quatro estágios. Na \textbf{aquisição}, a camada física
+do dispositivo atua como sensor: a câmera lê os QR Codes afixados nas placas das
+árvores, o receptor de posicionamento global coleta a localização do usuário e o
+magnetômetro fornece a orientação. Na \textbf{apresentação}, o aplicativo móvel
+consome esses dados e entrega valor ao visitante, enquanto o painel web executa as
+operações administrativas. No \textbf{processamento}, o servidor valida
+requisições e aplica as regras de negócio. Na \textbf{persistência}, o banco
+relacional garante a durabilidade das informações.
+
+% ============================================================================
+% >>> [PREENCHER --- FIGURA DA ARQUITETURA] <<<
+% Inserir aqui um diagrama de componentes mostrando: app móvel, painel web,
+% API Flask, PostgreSQL, e as integrações (Google Maps no cliente).
+% Salvar a imagem em USPSC-img/ e usar o bloco abaixo.
+%
+% \begin{figure}[htb]
+%   \centering
+%   \caption{Visão geral da arquitetura do ecossistema Trilha das Árvores}
+%   \label{fig:arquitetura}
+%   \includegraphics[width=0.95\textwidth]{USPSC-img/arquitetura}
+%   \\[4pt]
+%   Fonte: Elaborada pelo autor.
+% \end{figure}
+% ============================================================================
+
+\section{Aplicação Móvel}
+\label{sec:app_movel}
+
+\subsection{Organização e fluxo de telas}
+
+O módulo móvel é o principal ponto de contato com o usuário e concentra a maior
+parte dos requisitos de experiência. Construído em React Native sobre a
+plataforma Expo, organiza-se em telas e componentes reutilizáveis, com navegação
+gerenciada por pilha.
+
+O fluxo principal da atividade percorre as seguintes telas: uma tela inicial, que
+apresenta o projeto e dá acesso às demais; a listagem de trilhas disponíveis,
+obtida da API; uma tela de preparação, que antecede o início e apresenta
+distância, número de \textit{checkpoints} e uma lista de verificação prévia; a
+tela de atividade, que concentra mapa em tempo real, cronômetro, distância
+percorrida e progresso; a tela de leitura de QR Code; e a tela de conclusão. Duas
+telas auxiliares completam o conjunto: uma tela informativa sobre o projeto e uma
+tela de perfil de usuário.
+
+\subsection{Integração com sensores e recursos de hardware}
+
+A integração com o hardware é realizada por bibliotecas do ecossistema Expo e da
+comunidade React Native. O módulo \texttt{expo-location} fornece a geolocalização
+contínua que alimenta o posicionamento no mapa; o módulo \texttt{expo-sensors}
+provê os dados de magnetômetro que sustentam o componente de bússola; e a
+biblioteca \texttt{react-native-vision-camera}, com o módulo de leitura de códigos
+habilitado, realiza a decodificação dos QR Codes. A renderização cartográfica
+utiliza a biblioteca \texttt{react-native-maps} configurada com o provedor Google
+Maps, cuja chave de API é declarada na configuração do projeto.
+
+O cálculo de distância entre pontos apoia-se na fórmula de Haversine, disponível
+tanto no cliente quanto no servidor, o que permite exibir ao usuário a distância
+acumulada sem depender de requisição de rede a cada atualização de posição.
+
+\subsection{Decisões de interação com impacto sobre a experiência}
+
+Dois aspectos do projeto de interação merecem destaque por seu efeito direto sobre
+a experiência.
+
+O primeiro é o \textbf{mecanismo de suspensão e retomada da trilha}. Ao detectar
+que o usuário abandona a atividade sem concluí-la, o aplicativo persiste o estado
+corrente --- \textit{checkpoint} atual, tempo decorrido, distância acumulada e
+lista de árvores --- e oferece, no retorno, a escolha entre retomar do ponto de
+interrupção ou reiniciar. O recurso responde a um requisito de robustez diante de
+interrupções reais, como uma chamada telefônica, uma perda momentânea de sinal ou
+o cansaço, e sustenta a heurística de controle e liberdade do usuário.
+
+O segundo é o \textbf{retorno contínuo de progresso}. Barra de progresso, contagem
+de árvores visitadas, cronômetro e distância percorrida permanecem visíveis
+durante toda a atividade, e os marcadores no mapa distinguem por cor os
+\textit{checkpoints} já visitados, o atual e os subsequentes. Esse conjunto
+operacionaliza a heurística de visibilidade do status do sistema ao longo de toda
+a execução.
+
+\section{Painel Administrativo}
+\label{sec:painel}
+
+O painel administrativo é uma aplicação web de página única construída em React e
+empacotada com o conjunto de ferramentas \texttt{react-scripts}, utilizando o
+\textit{framework} de estilos Bootstrap para consistência visual e
+responsividade. A comunicação com a API é centralizada pela biblioteca Axios, o
+que padroniza o tratamento de cabeçalhos de autenticação e de erros.
+
+O painel permite aos gestores da ESALQ manter o conteúdo do parque --- cadastro,
+edição e remoção de árvores e de trilhas --- sem necessidade de recompilar ou
+redistribuir o aplicativo móvel, desacoplando a operação de conteúdo do ciclo de
+publicação do cliente.
+
+Do ponto de vista de interação, destacam-se dois aspectos. O primeiro é o uso da
+biblioteca \texttt{@dnd-kit} para ordenação por arrastar e soltar das árvores que
+compõem uma trilha, o que torna manipulável de forma direta uma operação que, de
+outro modo, exigiria manipulação numérica de índices de ordem.
+
+O segundo é uma decisão de projeto relevante para a integridade dos dados: a
+interface opera com o \textbf{identificador institucional da placa} da árvore,
+familiar ao administrador que percorre o parque, mas realiza, no momento da
+submissão, a tradução para o identificador interno de banco de dados exigido pela
+relação de chave estrangeira. Essa tradução ilustra a heurística de
+correspondência entre o sistema e o mundo real aplicada à interface
+administrativa: expõe-se ao usuário a linguagem que ele conhece, reservando a
+complexidade relacional à camada de software.
+
+\section{Servidor de Aplicação}
+\label{sec:backend}
+
+\subsection{Organização em camadas}
+
+O servidor é uma API REST desenvolvida em Python com o \textit{microframework}
+Flask, estruturada em camadas a fim de reduzir acoplamento e favorecer a
+manutenibilidade.
+
+A \textbf{camada de controladores} expõe os \textit{endpoints} e realiza a
+validação inicial das requisições, organizada por meio de \textit{Blueprints} que
+segmentam o roteamento por domínio funcional: um conjunto de rotas públicas,
+consumidas pelo aplicativo móvel, e um conjunto de rotas administrativas,
+protegidas por autenticação.
+
+A \textbf{camada de serviços} concentra a lógica de negócio e o encapsulamento de
+integrações. Compõem-na o serviço de autenticação, responsável pela emissão e
+verificação de tokens; o serviço de banco de dados, que gerencia a sessão; o
+serviço de mapa, que implementa o cálculo de distância geodésica pela fórmula de
+Haversine; o serviço de configuração e inicialização da aplicação; e um serviço de
+armazenamento de objetos, cuja situação é discutida na
+Seção~\ref{sec:persistencia}.
+
+A \textbf{camada de modelos} define os esquemas relacionais, mapeados pelo ORM
+SQLAlchemy. As entidades principais são \texttt{Tree}, que armazena identificador
+institucional, nome comum, nome científico, localização textual, altura, latitude,
+longitude e referência ao código de identificação; \texttt{Trail}, que armazena
+nome, número de árvores, distância total e imagens; \texttt{Admin}; e a tabela
+associativa \texttt{TreeTrail}, que modela o relacionamento entre árvores e
+trilhas e carrega dois atributos próprios da associação --- a ordem da árvore no
+percurso e a distância em relação à árvore anterior.
+
+\subsection{Confiabilidade da conexão com o banco}
+
+Uma decisão de implementação de interesse particular para a confiabilidade
+percebida é a ativação da opção \texttt{pool\_pre\_ping} nas opções de motor do
+SQLAlchemy, realizada na inicialização da aplicação. A opção determina que cada
+conexão obtida do \textit{pool} seja testada antes do uso, o que previne erros de
+conexão expirada após períodos de inatividade do banco. Tais erros, se propagados
+ao cliente, manifestar-se-iam como mensagens obscuras e interrupção de fluxo
+durante a trilha. Trata-se de exemplo concreto de configuração de infraestrutura,
+invisível ao usuário, que sustenta diretamente a heurística de prevenção de erros.
+
+\subsection{Documentação da interface de programação}
+
+A documentação da API é servida interativamente por meio de Swagger, com a
+interface disponível em rota dedicada. Registra-se, contudo, que a especificação
+publicada encontra-se \textbf{desatualizada} em relação às rotas efetivamente
+implementadas, e que seus textos descritivos conservam conteúdo de exemplo do
+andaime inicial do projeto. A correção da especificação figura entre as
+recomendações consolidadas no Capítulo~\ref{cap:conclusao}.
+
+\section{Persistência de Dados e de Artefatos Binários}
+\label{sec:persistencia}
+
+Os dados estruturados são persistidos em um sistema gerenciador de banco de dados
+relacional PostgreSQL, escolhido por sua robustez, conformidade transacional e
+maturidade no ecossistema de código aberto.
+
+O tratamento dos artefatos binários merece registro detalhado, por constituir
+divergência entre a arquitetura projetada e a implementada. O projeto \textbf{prevê}
+um serviço de armazenamento de objetos compatível com a API do Amazon S3,
+implementado sobre MinIO e encapsulado em um serviço dedicado, cuja classe está
+presente no código-fonte e cuja dependência consta das exigências do projeto.
+Entretanto, na versão atualmente em operação, esse serviço \textbf{não é invocado
+por nenhum controlador}: as imagens de capa e de mapa das trilhas são armazenadas
+como colunas binárias na própria tabela de trilhas e servidas por
+\textit{endpoints} do processo Flask.
+
+Essa divergência tem duas consequências relevantes para a experiência do usuário.
+A primeira é que o servimento de imagens ocorre pelo processo de aplicação, que
+não é otimizado para entregar arquivos estáticos volumosos de forma concorrente;
+sob carga, isso eleva a latência de carregamento e prolonga telas de espera no
+cliente. A segunda é que o armazenamento de dados binários em colunas do banco
+relacional onera consultas e rotinas de cópia de segurança, o que compromete a
+escalabilidade da solução à medida que o acervo cresce.
+
+Registra-se ainda que a configuração do serviço de armazenamento contém endereço
+de rede fixado em código, acompanhado de anotação de pendência --- indício de que
+a integração permaneceu incompleta. A conclusão dessa integração figura entre as
+recomendações de evolução prioritária.
+
+\section{Serviços Cartográficos}
+\label{sec:cartografia}
+
+A base cartográfica e a plotagem dos marcadores apoiam-se no provedor Google Maps,
+consumido \textbf{diretamente pelo cliente móvel} por meio da biblioteca
+\texttt{react-native-maps}, com chave de API declarada na configuração do
+aplicativo. O servidor não intermedia requisições cartográficas: seu serviço de
+mapa limita-se ao cálculo geodésico de distâncias.
+
+Essa configuração tem três implicações. Primeiro, a exibição do mapa depende de
+conectividade no dispositivo do usuário; em áreas de mata densa do campus, a
+latência ou a indisponibilidade da rede degrada a orientação, o que reforça a
+importância dos mecanismos de resiliência no cliente e de estados de carregamento
+e erro bem comunicados. Segundo, não há previsão de operação com base cartográfica
+armazenada localmente, de modo que a ausência de conectividade compromete a
+funcionalidade central da atividade. Terceiro, a chave de API encontra-se exposta
+em arquivo versionado do repositório, o que constitui vulnerabilidade de
+configuração e recomenda migração para variável de ambiente com restrição de uso
+por aplicativo.
+
+\section{Segurança e Autenticação}
+\label{sec:seguranca}
+
+O acesso às operações administrativas é protegido por autenticação baseada em
+\textit{JSON Web Tokens}, implementada com a biblioteca PyJWT e centralizada no
+serviço de autenticação. O modelo sem estado do JWT alinha-se ao estilo REST e
+simplifica a verificação de autorização a cada requisição.
+
+No plano da experiência, o tratamento diferenciado das respostas de erro ---
+distinguindo, por exemplo, ``não autorizado'' de ``erro nos dados enviados'' ---
+permite ao cliente apresentar mensagens específicas e acionáveis, atendendo à
+heurística de ajuda ao usuário no reconhecimento e na recuperação de erros.
+
+Registram-se, contudo, três limitações de segurança identificadas na
+implementação atual. A primeira é que a chave de assinatura dos tokens está
+fixada em código-fonte versionado, o que compromete a confidencialidade da chave e
+inviabiliza sua rotação. A segunda é que os tokens emitidos não contêm campo de
+expiração, de modo que um token, uma vez emitido, permanece válido
+indefinidamente. A terceira é que a comunicação com o servidor institucional
+ocorre sobre HTTP em texto claro, o que exigiu configuração explícita de
+permissão de tráfego não cifrado no cliente Android. Embora funcional no contexto
+controlado da rede da universidade, a ausência de TLS constitui limitação de
+segurança e de confiança percebida, e sua correção figura como evolução
+prioritária.
+
+\section{Implantação e Infraestrutura}
+\label{sec:implantacao}
+
+O servidor de aplicação e o banco de dados são conteinerizados e orquestrados com
+Docker Compose, em execução sobre servidor Linux na infraestrutura de rede da
+universidade. A composição define dois serviços --- o banco PostgreSQL, com volume
+persistente e verificação de saúde, e a API, que depende da disponibilidade
+efetiva do banco para iniciar --- e expõe a API em porta dedicada, com política de
+reinício automático.
+
+A conteinerização garante paridade entre os ambientes de desenvolvimento e de
+produção, isolando dependências do sistema hospedeiro e reduzindo a classe de
+defeitos associada a divergências de ambiente. Do ponto de vista da avaliação, essa
+previsibilidade contribui para que o software submetido ao estudo com usuários
+corresponda ao software efetivamente entregue.
+
+\section{Decisões Técnicas como Suporte à Experiência do Usuário}
+\label{sec:mapeamento}
+
+A discussão precedente sustenta a tese de que, em aplicações móveis de uso em
+campo, a experiência do usuário é propriedade emergente de toda a pilha
+tecnológica, e não apenas da camada de apresentação. O Quadro~\ref{quad:mapeamento}
+consolida essa correlação, associando cada decisão de engenharia ao efeito
+esperado sobre a percepção do usuário e à heurística correspondente, conforme a
+numeração adotada no Quadro~\ref{quad:heuristicas}.
+
+\begin{quadro}[htb]
+\centering
+\caption{Mapeamento entre decisões técnicas, efeito sobre a experiência e heurística associada}
+\label{quad:mapeamento}
+\footnotesize
+\begin{tabular}{p{4.0cm} p{4.6cm} p{2.6cm}}
+\toprule
+\textbf{Decisão técnica} & \textbf{Efeito esperado sobre a experiência} &
+\textbf{Heurística} \\
+\midrule
+React Native com acesso nativo a sensores & Baixa latência de posicionamento,
+bússola e câmera; imersão preservada & H2 \\
+\addlinespace
+Componentes de interface reutilizáveis & Consistência visual e comportamental
+entre telas & H4 \\
+\addlinespace
+Suspensão e retomada da trilha & Robustez a interrupções; senso de controle sobre
+a atividade & H3 \\
+\addlinespace
+Retorno contínuo de progresso, tempo e distância & Usuário permanentemente
+informado do estado da atividade & H1 \\
+\addlinespace
+Marcadores diferenciados por cor no mapa & Distinção imediata entre visitado,
+atual e subsequente & H1, H6 \\
+\addlinespace
+Tradução de identificador de placa para identificador interno & Administrador
+opera na linguagem que conhece & H2 \\
+\addlinespace
+\texttt{pool\_pre\_ping} no pool de conexões & Prevenção de erros de conexão
+expirada & H5 \\
+\addlinespace
+Tratamento diferenciado de códigos de erro HTTP & Mensagens de erro específicas e
+acionáveis & H9 \\
+\midrule
+\multicolumn{3}{l}{\textit{Limitações identificadas}} \\
+\midrule
+Servimento de imagens pelo processo Flask & Risco de latência sob carga; telas de
+espera prolongadas & H1 (negativa) \\
+\addlinespace
+Dependência de conectividade para a base cartográfica & Risco de indisponibilidade
+do mapa em áreas de mata & H5, H9 (negativa) \\
+\addlinespace
+Comunicação sem TLS & Redução da confiança e da segurança percebidas & --- \\
+\addlinespace
+Token sem expiração e chave em código & Risco de segurança não percebido pelo
+usuário final & --- \\
+\addlinespace
+Tela de perfil com dados não integrados & Informação irreal; quebra de confiança
+no sistema & H1 (negativa) \\
+\addlinespace
+Especificação da API desatualizada & Não afeta o usuário final; onera a evolução &
+--- \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+As linhas assinaladas como limitações não constituem apenas apontamentos de
+engenharia: são \textbf{hipóteses verificáveis} no estudo com usuários. Espera-se
+que se manifestem como atritos observáveis sob o protocolo \textit{Think-Aloud} e
+que encontrem correspondência nos escores de Facilidade de Uso Percebida do
+instrumento TAM. É esse encadeamento --- da decisão técnica ao atrito observado, e
+do atrito observado ao escore atitudinal --- que a matriz de rastreabilidade
+descrita no capítulo seguinte se destina a explicitar.
+
+\section{Considerações Finais}
+\label{sec:dev_finais}
+
+Este capítulo descreveu a arquitetura do ecossistema \textit{Trilha das Árvores}
+em seus três módulos, detalhou as decisões de engenharia com potencial impacto
+sobre a experiência do usuário e registrou, de forma explícita, as divergências
+entre a arquitetura projetada e a efetivamente implementada, bem como as
+limitações de segurança e de desempenho identificadas na versão avaliada. O
+mapeamento consolidado no Quadro~\ref{quad:mapeamento} cumpre o primeiro objetivo
+específico enunciado na Seção~\ref{sec:objetivos} e fornece o conjunto de
+hipóteses que a avaliação empírica, descrita no capítulo seguinte, se propõe a
+verificar.

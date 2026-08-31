@@ -1,0 +1,733 @@
+%% USPSC-Cap2-FundamentacaoTeorica.tex
+% ----------------------------------------------------------
+% Fundamentação Teórica
+% ----------------------------------------------------------
+\chapter{Fundamentação Teórica}
+\label{cap:fundamentacao}
+
+\section{Considerações Iniciais}
+\label{sec:fund_consideracoes}
+
+Este capítulo estabelece o arcabouço conceitual que sustenta a avaliação relatada
+nesta monografia. A organização do texto segue a ordem em que os conceitos são
+mobilizados no restante do trabalho. A Seção~\ref{sec:usabilidade_ux} delimita os
+conceitos de usabilidade e de experiência do usuário a partir das normas
+internacionais que os definem, e discute por que o contexto de uso móvel e ao ar
+livre impõe restrições que não se manifestam em avaliações conduzidas em
+laboratório. A Seção~\ref{sec:mobile} caracteriza o desenvolvimento móvel
+multiplataforma e as implicações da escolha tecnológica sobre a qualidade da
+interação. A Seção~\ref{sec:metodos} apresenta os métodos de avaliação
+empregados --- avaliação heurística, protocolo \textit{Think-Aloud}, entrevista
+semiestruturada e o \textit{Technology Acceptance Model} ---, bem como os
+instrumentos considerados e deliberadamente não adotados. A
+Seção~\ref{sec:personas_teoria} trata da modelagem de perfis de usuário por meio
+de personas. A Seção~\ref{sec:gamificacao} discute o problema teórico específico
+deste trabalho: a ambiguidade da origem do atrito em sistemas que incorporam
+desafio deliberado. A Seção~\ref{sec:justificativa_mista} justifica a articulação
+dos métodos em um desenho de métodos mistos.
+
+Uma observação preliminar orienta a leitura do capítulo. A avaliação de um
+artefato interativo não é procedimento neutro: cada método incorpora pressupostos
+sobre a natureza do que se pretende medir e produz evidências de um tipo
+particular. A escolha dos métodos aqui apresentados, portanto, não decorre de sua
+popularidade na literatura, mas de sua adequação ao problema de pesquisa
+enunciado na Seção~\ref{sec:problema} --- distinguir, em campo, as dificuldades
+originadas na interface daquelas inerentes ao desafio proposto pela atividade.
+
+\section{Usabilidade e Experiência do Usuário}
+\label{sec:usabilidade_ux}
+
+\subsection{Usabilidade segundo a ISO 9241-11}
+
+A norma \citeonline{iso9241part11} define usabilidade como a medida em que um
+sistema, produto ou serviço pode ser utilizado por usuários específicos para
+alcançar objetivos especificados com \textbf{eficácia}, \textbf{eficiência} e
+\textbf{satisfação} em um \textbf{contexto de uso} especificado. Cada termo da
+definição carrega consequências metodológicas que convém explicitar.
+
+\begin{alineas}
+  \item \textbf{Eficácia} refere-se à acurácia e à completude com que os usuários
+  atingem os objetivos. Operacionalmente, traduz-se em taxas de conclusão de
+  tarefa e em contagens de erro.
+
+  \item \textbf{Eficiência} relaciona os recursos consumidos --- tempo, esforço
+  físico, esforço cognitivo --- aos resultados obtidos. É comumente aferida por
+  tempo de tarefa e número de ações.
+
+  \item \textbf{Satisfação} designa as respostas físicas, cognitivas e emocionais
+  do usuário decorrentes do uso, e é tipicamente medida por instrumentos
+  autorrelatados.
+
+  \item \textbf{Contexto de uso} compreende os usuários, as tarefas, os
+  equipamentos e o ambiente físico e social em que a interação ocorre.
+\end{alineas}
+
+A inclusão do contexto de uso na própria definição é o ponto de maior relevância
+para esta monografia. A usabilidade não é atributo intrínseco do artefato, mas
+propriedade relacional entre artefato, usuário, tarefa e ambiente. Segue-se que
+uma avaliação conduzida em condições artificialmente favoráveis --- em ambiente
+interno, com o usuário sentado e em repouso --- não caracteriza a usabilidade do
+sistema no contexto em que ele será efetivamente utilizado. Esse raciocínio
+fundamenta a decisão, detalhada no Capítulo~\ref{cap:metodologia}, de conduzir a
+avaliação empírica em campo, no próprio parque, com padronização e registro das
+condições ambientais em vez de sua eliminação.
+
+\subsection{Experiência do Usuário segundo a ISO 9241-210}
+
+A norma \citeonline{iso9241part210} amplia o escopo da avaliação ao definir
+experiência do usuário como as percepções e respostas de uma pessoa resultantes
+do uso ou da antecipação do uso de um sistema, produto ou serviço. A definição
+abrange emoções, crenças, preferências, percepções, respostas físicas e
+psicológicas, comportamentos e realizações que ocorrem antes, durante e depois do
+uso.
+
+A distinção entre usabilidade e experiência do usuário é frequentemente tratada
+como questão de amplitude, mas é mais produtivo compreendê-la como diferença de
+objeto. A usabilidade pergunta se o usuário consegue realizar a tarefa; a
+experiência do usuário pergunta o que a realização da tarefa significou para ele.
+No caso do \textit{Trilha das Árvores}, essa distinção é constitutiva do problema:
+não basta verificar que o visitante conseguiu chegar ao \textit{checkpoint} e
+escanear o QR Code; interessa saber se a mediação tecnológica enriqueceu ou
+empobreceu sua relação com o parque.
+
+\subsection{Qualidade em uso e qualidade de produto}
+
+A norma \citeonline{isoiec25010} organiza a qualidade de sistemas de software em
+dois modelos complementares. O modelo de \textbf{qualidade em uso} descreve os
+efeitos do uso do sistema em um contexto específico, com características como
+eficácia, eficiência, satisfação, ausência de risco e cobertura de contexto. O
+modelo de \textbf{qualidade de produto} descreve propriedades estáticas e
+dinâmicas do software, entre as quais a adequação funcional, a eficiência de
+desempenho, a confiabilidade, a segurança e a usabilidade --- esta última
+decomposta em subcaracterísticas como reconhecibilidade da adequação,
+aprendibilidade, operabilidade, proteção contra erro do usuário, estética da
+interface e acessibilidade.
+
+A pertinência dessa norma para este trabalho está na articulação que ela permite
+entre as duas camadas. A hipótese enunciada na Seção~\ref{sec:problema} sustenta
+que os atritos percebidos pelo usuário --- fenômenos de qualidade em uso ---
+originam-se, em parte, em decisões situadas na camada de qualidade de produto,
+como a estratégia de persistência de imagens ou a política de tratamento de erros
+de rede. A matriz de rastreabilidade proposta como contribuição do trabalho é,
+sob essa ótica, um instrumento que vincula as duas camadas do modelo.
+
+\subsection{Especificidades do contexto móvel e de uso em campo}
+\label{sec:contexto_movel}
+
+Aplicações móveis utilizadas em deslocamento operam sob restrições que sistemas
+de mesa não enfrentam e que a literatura de Interação Humano-Computador tem
+tratado sob a designação de limitações situacionais. Entre as mais relevantes
+para este trabalho, destacam-se:
+
+\begin{alineas}
+  \item \textbf{Atenção dividida.} O usuário não dedica atenção exclusiva à tela.
+  Ele caminha, observa o ambiente, desvia de obstáculos e mantém orientação
+  espacial. A carga cognitiva disponível para a interface é, portanto, residual.
+
+  \item \textbf{Condições de luminosidade não controladas.} A incidência direta
+  de luz solar reduz drasticamente o contraste efetivo da tela, o que penaliza
+  interfaces que dependem de diferenças cromáticas sutis ou de tipografia de
+  pequeno corpo.
+
+  \item \textbf{Interação motora degradada.} A precisão do toque diminui com o
+  movimento do corpo, o que amplia o custo de alvos pequenos ou próximos entre
+  si.
+
+  \item \textbf{Conectividade e posicionamento intermitentes.} Áreas arborizadas
+  atenuam o sinal de satélites de posicionamento e de redes móveis, o que produz
+  latência e imprecisão que o usuário percebe como falha do aplicativo.
+
+  \item \textbf{Restrição energética.} O uso contínuo de tela, GPS, câmera e
+  sensores inerciais consome bateria em ritmo elevado, e a ansiedade quanto à
+  autonomia do dispositivo integra a experiência.
+\end{alineas}
+
+Essas restrições não constituem meros incômodos a serem contornados no
+planejamento do estudo. Elas são parte do contexto de uso previsto pela
+\citeonline{iso9241part11} e, portanto, parte daquilo que se avalia. Sua
+supressão descaracterizaria o objeto.
+
+\section{Desenvolvimento Móvel Multiplataforma}
+\label{sec:mobile}
+
+\subsection{Estratégias de desenvolvimento}
+
+A computação móvel consolidou-se como principal meio de acesso à informação, e o
+mercado de sistemas operacionais móveis organizou-se em torno de duas plataformas
+dominantes, Android e iOS. Essa configuração impõe ao desenvolvimento o problema
+da fragmentação: historicamente, atender ambas as plataformas exigia manter duas
+bases de código independentes, escritas em Kotlin ou Java e em Swift ou
+Objective-C, respectivamente, com duplicação de esforço e ampliação da superfície
+de inconsistências entre versões.
+
+Em resposta a esse problema, consolidaram-se três estratégias, sintetizadas no
+Quadro~\ref{quad:estrategias}.
+
+\begin{quadro}[htb]
+\centering
+\caption{Estratégias de desenvolvimento de aplicações móveis}
+\label{quad:estrategias}
+\begin{tabular}{p{2.6cm} p{4.2cm} p{4.6cm}}
+\toprule
+\textbf{Estratégia} & \textbf{Característica} & \textbf{Implicação para a UX} \\
+\midrule
+Nativa & Código específico por plataforma, com acesso direto às APIs do sistema &
+Desempenho e integração de sensores máximos; custo de desenvolvimento e
+manutenção mais elevado \\
+\addlinespace
+Híbrida (\textit{web}) & Conteúdo web encapsulado em contêiner nativo &
+Menor custo; latência superior e acesso limitado a sensores, o que compromete
+interações dependentes de hardware \\
+\addlinespace
+Multiplataforma & Base de código única traduzida para componentes nativos reais &
+Reaproveitamento de código com desempenho próximo ao nativo e acesso a sensores
+por bibliotecas padronizadas \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+\subsection{React Native e a plataforma Expo}
+
+O \textit{framework} React Native, mantido pela Meta, situa-se na abordagem
+multiplataforma. Ele permite descrever a interface de forma declarativa em
+JavaScript, delegando a renderização a componentes nativos reais de cada
+plataforma, e não a uma \textit{webview}. Um mesmo componente declarado no código
+é, assim, traduzido para os elementos visuais nativos do Android e do iOS,
+preservando as convenções de interação de cada sistema.
+
+Essa propriedade tem consequência direta sobre a usabilidade. Ao herdar os
+componentes nativos, a aplicação herda também os padrões de interação que o
+usuário já domina em seu próprio dispositivo, o que favorece a heurística de
+consistência e padrões discutida na Seção~\ref{sec:heuristica}. Sobre o React
+Native, o projeto emprega a plataforma Expo, que fornece um fluxo de trabalho
+gerenciado, abstrai parte substancial da configuração nativa e disponibiliza
+módulos padronizados de acesso a hardware.
+
+\subsection{Implicações da escolha tecnológica para a experiência}
+
+A pertinência da abordagem multiplataforma para o \textit{Trilha das Árvores} não
+é apenas econômica. A proposta de valor do aplicativo depende de integração de
+baixa latência com três subsistemas de hardware: o receptor de posicionamento
+global, que sustenta o mapa em tempo real e o cálculo de distância; o
+magnetômetro, que alimenta a bússola; e a câmera, que realiza a leitura dos QR
+Codes nos \textit{checkpoints}. Uma abordagem híbrida introduziria, em cada um
+desses caminhos, uma camada adicional de tradução entre o contêiner web e as APIs
+nativas, com custo em latência perceptível. Em uma atividade realizada em
+movimento, latência perceptível converte-se em hesitação, e hesitação converte-se
+em deslocamento de atenção do ambiente para a tela --- exatamente o efeito que o
+projeto pretende evitar.
+
+\section{Métodos de Avaliação de Usabilidade e Experiência do Usuário}
+\label{sec:metodos}
+
+\subsection{Métodos de inspeção e métodos empíricos}
+
+A literatura de Interação Humano-Computador organiza os métodos de avaliação em
+dois grandes grupos \cite{barbosasilva2010}. Os \textbf{métodos de inspeção},
+também chamados analíticos, dispensam a participação de usuários: um ou mais
+especialistas examinam a interface à luz de princípios, modelos ou padrões
+consolidados. Os \textbf{métodos empíricos}, ou de investigação com usuários,
+coletam dados da interação real ou das opiniões de usuários efetivos ou
+potenciais.
+
+Os dois grupos produzem evidências de naturezas distintas e não substituíveis. A
+inspeção identifica violações de princípios com baixo custo e em qualquer estágio
+do desenvolvimento, mas não informa se as violações identificadas efetivamente
+prejudicam usuários reais, nem revela problemas que decorram de descompasso entre
+o modelo mental do projetista e o do usuário. A investigação empírica revela
+esses descompassos, mas é onerosa, exige um artefato em estado utilizável e, se
+aplicada a uma interface ainda repleta de defeitos elementares, desperdiça a
+atenção dos participantes em problemas que a inspeção teria detectado sem custo.
+
+Dessa complementaridade decorre o encadeamento adotado neste trabalho: a
+inspeção heurística precede e sanea, e o estudo empírico verifica e explica.
+
+\subsection{Avaliação Heurística}
+\label{sec:heuristica}
+
+A Avaliação Heurística, proposta por \citeonline{nielsenmolich1990} e consolidada
+por \citeonline{nielsen1994heuristic}, é o método de inspeção mais difundido na
+engenharia de usabilidade. O procedimento consiste em um pequeno conjunto de
+avaliadores examinando a interface individualmente, percorrendo seus elementos e
+registrando toda violação de um conjunto de princípios gerais de usabilidade ---
+as heurísticas. Os relatos individuais são posteriormente consolidados em uma
+lista única de problemas.
+
+O conjunto de referência é o das dez heurísticas de
+\citeonline{nielsen1994heuristic}, reproduzidas no Quadro~\ref{quad:heuristicas}.
+
+\begin{quadro}[htb]
+\centering
+\caption{As dez heurísticas de usabilidade}
+\label{quad:heuristicas}
+\begin{tabular}{c p{4.0cm} p{6.4cm}}
+\toprule
+\textbf{\#} & \textbf{Heurística} & \textbf{Descrição} \\
+\midrule
+H1 & Visibilidade do status do sistema & O sistema mantém o usuário informado
+sobre o que ocorre, por meio de retorno apropriado em tempo razoável \\
+\addlinespace
+H2 & Correspondência entre o sistema e o mundo real & O sistema emprega a
+linguagem do usuário, com palavras e conceitos que lhe são familiares, em ordem
+natural e lógica \\
+\addlinespace
+H3 & Controle e liberdade do usuário & O sistema oferece saídas claramente
+sinalizadas para estados indesejados, com desfazer e refazer \\
+\addlinespace
+H4 & Consistência e padrões & Termos, situações e ações equivalentes são
+representados de forma equivalente, respeitando as convenções da plataforma \\
+\addlinespace
+H5 & Prevenção de erros & O projeto elimina condições propensas a erro ou
+apresenta confirmação antes que o usuário se comprometa com a ação \\
+\addlinespace
+H6 & Reconhecimento em vez de memorização & Objetos, ações e opções permanecem
+visíveis, dispensando que o usuário retenha informação entre telas \\
+\addlinespace
+H7 & Flexibilidade e eficiência de uso & Aceleradores, invisíveis ao usuário
+novato, permitem que o usuário experiente atue com mais rapidez \\
+\addlinespace
+H8 & Estética e projeto minimalista & As interfaces não contêm informação
+irrelevante ou raramente necessária, que compete com a informação pertinente \\
+\addlinespace
+H9 & Ajuda ao usuário no reconhecimento, diagnóstico e recuperação de erros &
+As mensagens de erro são expressas em linguagem simples, indicam precisamente o
+problema e sugerem uma solução \\
+\addlinespace
+H10 & Ajuda e documentação & Quando necessária, a documentação é fácil de
+localizar, focada na tarefa do usuário e concisa \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Adaptado de \citeonline{nielsen1994heuristic}.
+\end{flushleft}
+\end{quadro}
+
+Cada problema identificado recebe uma classificação de severidade, que combina a
+frequência com que o problema ocorre, o impacto que produz sobre o usuário e sua
+persistência ao longo do uso repetido. A escala empregada é a de
+\citeonline{nielsen1994heuristic}, apresentada no
+Quadro~\ref{quad:severidade}, e sua função é ordenar as correções segundo
+prioridade, em um cenário de recursos de desenvolvimento limitados.
+
+\begin{quadro}[htb]
+\centering
+\caption{Escala de severidade de problemas de usabilidade}
+\label{quad:severidade}
+\begin{tabular}{c p{9.6cm}}
+\toprule
+\textbf{Grau} & \textbf{Interpretação} \\
+\midrule
+0 & Não se trata de problema de usabilidade \\
+1 & Problema cosmético; corrigir apenas se houver tempo disponível \\
+2 & Problema menor; correção de baixa prioridade \\
+3 & Problema maior; correção de alta prioridade \\
+4 & Catastrófico; correção obrigatória antes da liberação \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Adaptado de \citeonline{nielsen1994heuristic}.
+\end{flushleft}
+\end{quadro}
+
+Quanto ao número de avaliadores, \citeonline{nielsenlandauer1993} propuseram um
+modelo segundo o qual a proporção de problemas encontrados cresce de forma
+assintótica com o número de inspetores, com ganho marginal decrescente a partir
+de aproximadamente cinco avaliadores. A recomendação prática daí derivada ---
+empregar de três a cinco avaliadores --- é a que orienta o dimensionamento
+descrito no Capítulo~\ref{cap:metodologia}.
+
+Reconhecem-se as limitações do método. A avaliação heurística tende a produzir
+falsos positivos, isto é, apontamentos que não se confirmam como problemas para
+usuários reais; é sensível à experiência do avaliador, com especialistas duplos
+--- conhecedores tanto de usabilidade quanto do domínio --- identificando
+substancialmente mais problemas; e é pouco eficaz na detecção de problemas que
+dependam de conhecimento tácito do domínio ou de expectativas específicas do
+público-alvo. Essas limitações são precisamente as que a etapa empírica se
+destina a compensar.
+
+\subsection{Percurso Cognitivo}
+
+O Percurso Cognitivo, proposto por \citeonline{wharton1994}, constitui método de
+inspeção alternativo, centrado na aprendibilidade. O avaliador percorre uma
+tarefa passo a passo e, a cada ação, formula quatro perguntas relativas à
+possibilidade de o usuário formar o objetivo correto, localizar o controle
+adequado, reconhecê-lo como o controle correto e interpretar o retorno obtido.
+
+O método foi considerado no planejamento deste trabalho e não foi adotado como
+técnica principal, por três razões. Primeiro, seu foco é o uso exploratório por
+usuário novato, dimensão que o estudo empírico com participantes em primeiro
+contato já cobre com evidência direta em vez de simulada. Segundo, sua aplicação
+rigorosa é demorada e produz recorte estreito, restrito às tarefas percorridas.
+Terceiro, o problema central desta pesquisa --- a atribuição da origem do atrito
+--- exige acesso ao processo cognitivo do usuário real, e não à simulação que o
+avaliador faz dele.
+
+\subsection{Protocolo Think-Aloud}
+\label{sec:thinkaloud}
+
+\subsubsection{Fundamentação psicológica}
+
+O protocolo \textit{Think-Aloud} consiste em solicitar ao participante que
+verbalize continuamente seus pensamentos enquanto executa uma tarefa. Sua
+fundamentação teórica remonta a \citeonline{ericssonsimon1980} e ao tratamento
+sistemático posteriormente consolidado em \citeonline{ericssonsimon1993}, que
+distinguem três níveis de verbalização:
+
+\begin{alineas}
+  \item \textbf{Nível 1 --- vocalização direta.} O participante enuncia
+  informação já codificada verbalmente na memória de trabalho. Não há
+  processamento adicional e não há interferência sobre o desempenho da tarefa.
+
+  \item \textbf{Nível 2 --- codificação verbal.} O participante traduz em
+  palavras informação armazenada em outro formato, como imagens ou relações
+  espaciais. Há custo cognitivo adicional, mas o conteúdo do pensamento permanece
+  inalterado.
+
+  \item \textbf{Nível 3 --- explicação e justificativa.} O participante é
+  solicitado a explicar, justificar ou racionalizar suas ações. Esse nível exige
+  processos cognitivos que não fariam parte da execução da tarefa e,
+  consequentemente, \textbf{altera} tanto o processo quanto o desempenho.
+\end{alineas}
+
+A consequência metodológica dessa distinção é operacional e rígida: as instruções
+dadas ao participante e as intervenções do moderador devem restringir-se a
+solicitar verbalização de níveis 1 e 2. Perguntas como ``por que você fez isso?''
+induzem verbalização de nível 3 e comprometem a validade dos dados coletados. O
+roteiro de moderação apresentado no Capítulo~\ref{cap:metodologia} incorpora essa
+restrição de forma explícita, com uma lista fechada de sondas permitidas.
+
+\subsubsection{Verbalização concomitante e retrospectiva}
+
+Distinguem-se duas modalidades de aplicação. Na modalidade
+\textbf{concomitante}, a verbalização ocorre simultaneamente à execução da
+tarefa; seu conteúdo reflete o estado corrente da memória de trabalho, sem os
+vieses de racionalização e de esquecimento. Na modalidade
+\textbf{retrospectiva}, o participante relata seus pensamentos após a conclusão
+da tarefa, frequentemente auxiliado por um estímulo de recuperação, como a
+reprodução do vídeo da sessão.
+
+\citeonline{vandenhaak2003} compararam experimentalmente as duas modalidades e
+observaram um compromisso entre elas: a modalidade concomitante produz maior
+volume de dados sobre o processo, ao custo de interferir na execução da tarefa;
+a retrospectiva preserva o desempenho e permite comentários mais elaborados, mas
+está sujeita a lacunas de memória e à reconstrução \textit{a posteriori}. Essa
+constatação é o fundamento da adaptação descrita a seguir.
+
+\subsubsection{Reatividade, moderação e limites do método}
+
+A crítica de \citeonline{borenramey2000} é particularmente relevante para a
+prática. Os autores observam que a aplicação corrente do método em avaliações de
+usabilidade afasta-se substancialmente do protocolo estrito de Ericsson e Simon,
+e propõem uma fundamentação alternativa, baseada na teoria da comunicação: a
+sessão é um evento comunicativo entre dois participantes, no qual o moderador
+sustenta a fala do usuário por meio de sinais mínimos de escuta, sem interferir no
+conteúdo. Dessa proposição derivam recomendações concretas adotadas neste
+trabalho: manter presença audível por meio de marcadores de reconhecimento,
+intervir com fórmulas fixas e neutras, e jamais responder a perguntas do
+participante durante a execução.
+
+Reconhecem-se, por rigor, as limitações do protocolo. A verbalização pode alterar
+levemente o desempenho, fenômeno designado reatividade; exige do participante
+esforço adicional, agravado quando a tarefa envolve deslocamento físico; e demanda
+do moderador disciplina considerável para não induzir ações. Essas limitações são
+mitigadas por treinamento prévio de verbalização, por roteiro fechado de
+intervenções e pela triangulação com os demais instrumentos.
+
+\subsubsection{Adaptação do protocolo ao contexto de campo}
+
+A aplicação do protocolo concomitante durante todo o percurso de uma trilha
+apresenta um problema específico. A fala exige recurso respiratório e atencional
+que compete com a caminhada, o que degrada simultaneamente a qualidade da
+verbalização e o desempenho na atividade --- e, em um aplicativo cuja proposta
+inclui componente de esforço físico, essa degradação confunde-se com o próprio
+objeto de estudo.
+
+Adota-se, por essa razão, um \textbf{protocolo híbrido segmentado}, que alterna
+as duas modalidades conforme o segmento da atividade:
+
+\begin{alineas}
+  \item nos segmentos \textbf{estacionários}, em que o participante manipula a
+  interface parado, aplica-se verbalização concomitante;
+
+  \item nos segmentos de \textbf{deslocamento} entre \textit{checkpoints},
+  observa-se o comportamento sem exigir fala, e aplica-se recuperação
+  retrospectiva imediata na chegada, enquanto o traço em memória permanece
+  acessível;
+
+  \item ao final da sessão, aplica-se recuperação retrospectiva assistida por
+  estímulo, com reprodução da gravação de tela dos episódios de hesitação
+  previamente registrados.
+\end{alineas}
+
+Essa articulação preserva a validade ecológica da observação em campo e mantém a
+qualidade dos dados verbais, apoiando-se no compromisso entre modalidades
+identificado por \citeonline{vandenhaak2003}.
+
+% ============================================================================
+% >>> [PREENCHER --- SONDAS E PERGUNTAS DO THINK-ALOUD] <<<
+%
+% Espaço reservado, conforme planejado, para a descrição das perguntas e
+% sondas utilizadas durante o protocolo.
+%
+% Sugestão de conteúdo a redigir aqui:
+%   (a) a lista fechada de sondas permitidas durante a tarefa, com a
+%       justificativa de nível de verbalização de cada uma;
+%   (b) a lista de formulações proibidas e o motivo (indução de nível 3);
+%   (c) a fórmula de devolução usada quando o participante faz perguntas;
+%   (d) o critério temporal de intervenção no silêncio;
+%   (e) o protocolo de ajuda escalonada e o critério de abandono de tarefa.
+%
+% Observação: o roteiro operacional completo entra como APÊNDICE. Aqui cabe
+% apenas a fundamentação de cada escolha, remetendo ao apêndice.
+% ============================================================================
+
+\subsection{Entrevista semiestruturada pós-tarefa}
+\label{sec:entrevista_teoria}
+
+A verbalização concomitante, por sua própria natureza, não captura aquilo que o
+participante não processa conscientemente durante a tarefa. Elementos de
+interface que ele simplesmente evita --- um ícone cujo significado não reconhece,
+um controle que não identifica como acionável --- não geram verbalização, pois não
+chegam a integrar seu fluxo de pensamento. O silêncio, nesses casos, é ausência
+de dado e não ausência de problema.
+
+A entrevista semiestruturada aplicada imediatamente após as tarefas destina-se a
+recuperar essa camada. Sua estrutura adota o formato de funil: inicia-se com
+perguntas abertas e não dirigidas, que capturam o que é saliente para o
+participante sem sugestão do entrevistador, e progride para sondagens dirigidas
+às hipóteses do estudo, incluindo verificação explícita de reconhecimento de
+ícones e de interpretação de indicadores. A ordenação não é acessória: perguntas
+dirigidas formuladas antes das abertas contaminam as respostas subsequentes.
+
+\subsection{Modelo de Aceitação de Tecnologia (TAM)}
+\label{sec:tam_teoria}
+
+O \textit{Technology Acceptance Model}, proposto por \citeonline{davis1989}, é uma
+adaptação da Teoria da Ação Racional ao domínio da aceitação de sistemas
+computacionais. O modelo sustenta que o uso efetivo de uma tecnologia é
+determinado pela intenção comportamental de uso, a qual, por sua vez, é
+determinada por dois construtos:
+
+\begin{alineas}
+  \item \textbf{Utilidade Percebida} (\textit{Perceived Usefulness} --- PU): o
+  grau em que a pessoa acredita que o uso de determinado sistema melhoraria seu
+  desempenho;
+
+  \item \textbf{Facilidade de Uso Percebida} (\textit{Perceived Ease of Use} ---
+  PEOU): o grau em que a pessoa acredita que o uso de determinado sistema seria
+  livre de esforço.
+\end{alineas}
+
+O modelo postula ainda que a PEOU exerce efeito sobre a PU: um sistema mais fácil
+de operar tende a ser percebido como mais útil, uma vez que menor parcela do
+esforço do usuário é consumida pela operação e maior parcela pode ser dirigida ao
+objetivo. Extensões posteriores, entre as quais o TAM2 e o modelo integrado
+apresentado por \citeonline{venkateshbala2008}, incorporaram determinantes
+adicionais de ambos os construtos, como norma subjetiva, relevância para o
+trabalho, autoeficácia e percepção de controle externo.
+
+A pertinência do TAM para este trabalho apoia-se em três argumentos. Primeiro, o
+objetivo do projeto transcende a operabilidade: interessa saber se o público
+adotaria e continuaria a usar o aplicativo, o que faz da Intenção de Uso um
+desfecho legítimo, ausente de instrumentos que meçam apenas usabilidade. Segundo,
+os dois construtos centrais correspondem com precisão à tese defendida na
+Seção~\ref{sec:motivacao}: a PEOU operacionaliza a exigência de que a interface
+não desvie carga cognitiva do desafio ambiental, enquanto a PU verifica se a
+mediação agrega valor efetivo à exploração. Terceiro, o modelo é parcimonioso e
+produz escores comparáveis, adequados a um estudo de graduação e a rodadas
+sucessivas de avaliação.
+
+A operacionalização emprega escala psicométrica do tipo Likert
+\cite{likert1932}. Adota-se amplitude de sete pontos, com ponto neutro central.
+A escolha de sete níveis, em vez de três ou cinco, oferece maior granularidade e
+sensibilidade a variações de intensidade e reduz a concentração de respostas em
+categorias extremas por ausência de alternativa intermediária adequada. Os itens
+efetivamente aplicados são apresentados na Seção~\ref{sec:instrumento_tam}.
+
+\subsection{Instrumentos considerados e não adotados}
+\label{sec:instrumentos_excluidos}
+
+A decisão por um instrumento de aceitação, em detrimento de escalas de usabilidade
+percebida ou de qualidade hedônica, exige justificativa explícita. Foram
+considerados e não adotados os três instrumentos a seguir.
+
+O \textbf{System Usability Scale} \cite{brooke1996} é escala de dez itens,
+amplamente empregada por sua brevidade e por produzir escore único de
+interpretação consolidada. Não foi adotado como instrumento principal porque mede
+usabilidade percebida de forma agregada, sem discriminar utilidade de facilidade,
+e não contempla intenção de uso --- dimensão que, como argumentado, integra o
+objetivo do projeto. Registra-se que sua aplicação complementar em rodadas
+futuras permanece viável e desejável.
+
+O \textbf{User Experience Questionnaire} \cite{laugwitz2008} e o
+\textbf{AttrakDiff} \cite{hassenzahl2003} avaliam, além das qualidades
+pragmáticas, as qualidades hedônicas da interação --- estímulo, identificação,
+originalidade, atratividade. Não foram adotados porque o caráter do software é
+utilitário e mediador: em uma atividade de exploração física no mundo real, o
+estímulo e o engajamento devem residir no ambiente e no desafio, e não na fruição
+da interface. Reconhece-se que essa opção prioriza a dimensão pragmática da
+experiência, e a investigação sistemática das qualidades hedônicas fica
+registrada como perspectiva de trabalho futuro.
+
+\section{Personas e Proto-personas}
+\label{sec:personas_teoria}
+
+Persona é a descrição de um arquétipo de usuário, construída como personagem
+fictício dotado de nome, objetivos, comportamentos, contexto e frustrações,
+destinada a orientar decisões de projeto e de avaliação. A técnica foi
+popularizada por \citeonline{cooper2004} e sistematizada por
+\citeonline{pruittgrudin2003}, que discutem tanto seu poder de comunicação quanto
+os riscos de sua construção sem base empírica.
+
+A persona clássica é derivada de pesquisa com usuários reais --- entrevistas,
+observação etnográfica, dados de uso. Quando essa base não está disponível,
+recorre-se à \textbf{proto-persona} \cite{gothelf2013}: construção que explicita
+as premissas da equipe sobre o público-alvo, formulada como hipótese a ser
+verificada e revisada à medida que dados empíricos se acumulem.
+
+A distinção é adotada aqui deliberadamente. O presente trabalho não dispõe de
+pesquisa prévia sobre o perfil de visitação do parque, e apresentar como personas
+o que são premissas seria atribuir aos perfis uma autoridade empírica que eles não
+possuem. Adotam-se, portanto, proto-personas, explicitamente identificadas como
+tal, cuja função é dupla: orientar a definição dos critérios de recrutamento e o
+desenho das tarefas, e constituir objeto de verificação, uma vez que os dados
+coletados permitirão confirmá-las, corrigi-las ou refutá-las. Registra-se ainda o
+uso de uma \textbf{antipersona}, isto é, a caracterização explícita de um perfil
+que o produto não se destina a atender, cuja função metodológica é fundamentar os
+critérios de exclusão do recrutamento.
+
+\section{Gamificação e a Ambiguidade da Origem do Atrito}
+\label{sec:gamificacao}
+
+Entende-se por gamificação o uso de elementos de projeto característicos de jogos
+em contextos que não são jogos \cite{deterding2011}. O \textit{Trilha das
+Árvores} incorpora vários desses elementos: um percurso com \textit{checkpoints}
+sequenciais, validação de chegada por leitura de código, cronometragem, medição de
+distância e indicação de progresso.
+
+Essa incorporação cria um problema teórico que a literatura de usabilidade não
+resolve de forma imediata. Os métodos clássicos de avaliação pressupõem que toda
+dificuldade encontrada pelo usuário constitui defeito a ser eliminado, pois a
+eficiência é tratada como valor a maximizar. Em sistemas com componente lúdico,
+porém, parte da dificuldade é constitutiva da proposta: localizar a próxima árvore
+exige esforço de orientação espacial, e esse esforço \textbf{é} a atividade, não um
+obstáculo a ela. Um instrumento que registre tal esforço como falha de eficiência
+produzirá recomendação de projeto que, se implementada, destruiria a proposta de
+valor do produto.
+
+Formula-se, assim, a necessidade de um critério de discriminação. Este trabalho
+adota a classificação de cada episódio de atrito segundo sua \textbf{origem}, em
+quatro categorias mutuamente excludentes:
+
+\begin{alineas}
+  \item \textbf{Interface} --- o atrito decorre de rótulo ambíguo, controle não
+  reconhecido, retorno ausente ou fluxo inconsistente. É defeito e demanda
+  correção.
+
+  \item \textbf{Desafio proposto} --- o atrito decorre da atividade que o
+  aplicativo deliberadamente propõe: caminhar, orientar-se, localizar a placa. É
+  característica e não demanda correção, embora possa demandar melhor
+  comunicação.
+
+  \item \textbf{Infraestrutura} --- o atrito decorre de latência de rede, perda
+  de sinal de posicionamento ou indisponibilidade de serviço externo. É defeito de
+  natureza não interacional, cuja correção situa-se na camada de engenharia.
+
+  \item \textbf{Dívida técnica} --- o atrito decorre de funcionalidade incompleta
+  ou de dado não integrado, conhecidos pela equipe. É defeito de completude.
+\end{alineas}
+
+Essa classificação, aplicada a cada episódio registrado, é o elemento que
+operacionaliza a questão de pesquisa formulada na Seção~\ref{sec:problema}. Sua
+aplicação exige acesso à atribuição causal do próprio participante, o que
+constitui argumento adicional em favor do protocolo \textit{Think-Aloud} e da
+entrevista pós-tarefa, e contra instrumentos que produzam apenas medidas
+agregadas de desempenho.
+
+\section{Triangulação e Justificativa da Abordagem Mista}
+\label{sec:justificativa_mista}
+
+A articulação dos três métodos não é aditiva, mas triangular
+\cite{creswell2011}. Cada um responde a uma pergunta distinta e é vulnerável a um
+tipo distinto de erro; sua convergência é o que confere credibilidade aos
+achados.
+
+\begin{alineas}
+  \item A \textbf{avaliação heurística} atua \textit{a priori} e responde à
+  pergunta ``a interface viola princípios consolidados?''. É vulnerável a falsos
+  positivos.
+
+  \item O \textbf{protocolo Think-Aloud}, complementado pela entrevista, atua
+  durante e imediatamente após o uso, e responde à pergunta ``por que o usuário
+  encontrou dificuldade, e de onde ela veio?''. É vulnerável à reatividade e à
+  pequena dimensão da amostra.
+
+  \item O \textbf{instrumento TAM} atua ao final e responde à pergunta ``quanto de
+  utilidade, facilidade e intenção de uso o sistema produziu?''. É vulnerável a
+  vieses de autorrelato e de desejabilidade social.
+\end{alineas}
+
+A convergência esperada entre as evidências é verificável e, portanto,
+falsificável: um atrito recorrentemente verbalizado no \textit{Think-Aloud} deve
+encontrar correspondência em escores mais baixos de Facilidade de Uso Percebida, e
+um construto bem avaliado no TAM deve corresponder à ausência de atritos
+correlatos na observação. A ausência dessa correspondência é, ela própria, achado
+relevante, pois indicaria que o instrumento quantitativo não capturou o fenômeno
+observado --- ou que a verbalização registrou incômodo que o participante não
+considera relevante o bastante para afetar sua avaliação global.
+
+É essa articulação que sustenta a contribuição pretendida e que se materializa na
+matriz de rastreabilidade descrita no Capítulo~\ref{cap:metodologia}.
+
+\section{Trabalhos Relacionados}
+\label{sec:trabalhos_relacionados}
+
+% ============================================================================
+% >>> [PREENCHER --- REVISÃO DE TRABALHOS CORRELATOS] <<<
+%
+% Esta seção deve reunir de 4 a 8 trabalhos correlatos e terminar com um
+% quadro comparativo posicionando esta monografia entre eles.
+%
+% Eixos de busca sugeridos:
+%   - avaliação de usabilidade de aplicativos móveis de trilha, turismo ou
+%     patrimônio natural;
+%   - aplicações de mediação em parques, jardins botânicos e arboretos;
+%   - avaliação de UX em contexto de campo / mobile HCI in the wild;
+%   - gamificação aplicada à educação ambiental;
+%   - aplicação do TAM a aplicativos móveis de turismo ou educação.
+%
+% Bases sugeridas: ACM DL, IEEE Xplore, Scopus, Google Scholar; e, para
+% produção nacional, os anais do IHC (SBC) e do SBIE.
+%
+% Sugestão de quadro comparativo com colunas:
+%   Trabalho | Domínio | Métodos de avaliação | Uso em campo? | n |
+%   Rastreia atrito até decisão técnica?
+%
+% A última coluna é o que posiciona esta monografia como contribuição.
+% ============================================================================
+
+\section{Considerações Finais}
+\label{sec:fund_finais}
+
+Este capítulo delimitou os conceitos de usabilidade e de experiência do usuário a
+partir das normas que os definem, destacando que o contexto de uso integra a
+própria definição de usabilidade e que, por consequência, a avaliação de uma
+aplicação de uso em campo deve preservar --- e não suprimir --- as condições
+reais de operação. Caracterizou o desenvolvimento móvel multiplataforma e as
+implicações da escolha tecnológica sobre a latência de acesso a sensores.
+Apresentou os métodos de avaliação adotados, sua fundamentação e suas limitações,
+bem como os instrumentos considerados e não adotados, com justificativa explícita.
+Discutiu a modelagem de perfis por proto-personas e formulou o problema teórico
+central deste trabalho: a ambiguidade da origem do atrito em sistemas que
+incorporam desafio deliberado, para a qual se propôs uma classificação em quatro
+categorias.
+
+O capítulo seguinte descreve o ecossistema \textit{Trilha das Árvores}, sua
+arquitetura e as decisões de engenharia cujo efeito sobre a experiência do usuário
+constitui objeto da avaliação.

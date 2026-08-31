@@ -1,0 +1,444 @@
+%% USPSC-Cap5-Resultados.tex
+% ----------------------------------------------------------
+% Resultados e Discussão
+% ----------------------------------------------------------
+%
+% ATENÇÃO: capítulo estruturado antes da coleta.
+% Todos os quadros e tabelas estão montados e rotulados, com linhas de
+% exemplo marcadas como [preencher]. Ao obter os dados, basta substituir o
+% conteúdo das células e redigir os parágrafos de análise indicados.
+%
+% Convenção adotada:
+%   Rodada 1 = avaliação inicial, ANTES das melhorias  (participantes P1..P3)
+%   Rodada 2 = reavaliação, APÓS as melhorias          (participantes P4..P6)
+% ----------------------------------------------------------
+\chapter{Resultados e Discussão}
+\label{cap:resultados}
+
+\section{Considerações Iniciais}
+\label{sec:res_consideracoes}
+
+Este capítulo apresenta os resultados obtidos nas quatro fases descritas no
+Capítulo~\ref{cap:metodologia}. A Seção~\ref{sec:res_heuristica} relata os achados
+da avaliação heurística e as correções dela decorrentes. A
+Seção~\ref{sec:res_rodada1} apresenta os resultados da avaliação inicial com
+usuários. A Seção~\ref{sec:res_correcoes} descreve as melhorias implementadas em
+resposta a esses achados. A Seção~\ref{sec:res_rodada2} apresenta os resultados da
+reavaliação. A Seção~\ref{sec:res_matriz} consolida a matriz de rastreabilidade e
+a Seção~\ref{sec:res_discussao} discute os achados à luz da questão de pesquisa.
+
+\section{Resultados da Avaliação Heurística}
+\label{sec:res_heuristica}
+
+% >>> [PREENCHER] Parágrafo introdutório: número de avaliadores, perfil de cada
+% um, telas inspecionadas, duração da inspeção e forma de consolidação dos
+% relatos individuais.
+
+\begin{quadro}[htb]
+\centering
+\caption{Problemas identificados na avaliação heurística}
+\label{quad:res_heuristica}
+\footnotesize
+\begin{tabular}{p{1.0cm} p{3.0cm} p{4.4cm} p{1.2cm} p{1.2cm} p{1.4cm}}
+\toprule
+\textbf{ID} & \textbf{Tela} & \textbf{Problema} & \textbf{Heur.} &
+\textbf{Sev.} & \textbf{Corrigido} \\
+\midrule
+AH01 & \textit{[preencher]} & \textit{[preencher]} & --- & --- & --- \\
+AH02 & \textit{[preencher]} & \textit{[preencher]} & --- & --- & --- \\
+AH03 & \textit{[preencher]} & \textit{[preencher]} & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+% >>> [PREENCHER] Análise: distribuição dos problemas por heurística e por
+% severidade; quais foram corrigidos antes da Fase 1 e quais foram adiados,
+% com a justificativa do adiamento.
+
+\section{Rodada 1 --- Avaliação Inicial}
+\label{sec:res_rodada1}
+
+\subsection{Caracterização dos participantes e das condições}
+
+\begin{quadro}[htb]
+\centering
+\caption{Perfil dos participantes da Rodada 1}
+\label{quad:res_perfil_r1}
+\footnotesize
+\begin{tabular}{p{1.0cm} p{1.0cm} p{2.8cm} p{2.6cm} p{2.4cm} p{2.0cm}}
+\toprule
+\textbf{ID} & \textbf{Idade} & \textbf{Ocupação} & \textbf{Proto-persona
+correspondente} & \textbf{Uso de apps de percurso} & \textbf{Esforço percebido
+(0--10)} \\
+\midrule
+P1 & --- & \textit{[preencher]} & --- & --- & --- \\
+P2 & --- & \textit{[preencher]} & --- & --- & --- \\
+P3 & --- & \textit{[preencher]} & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+% >>> [PREENCHER] Registrar: data e horário das sessões, condições
+% meteorológicas, trilha utilizada, número de checkpoints e versão do
+% aplicativo. Comentar a aderência entre proto-personas planejadas e
+% participantes efetivamente recrutados, justificando eventuais desvios.
+
+\subsection{Desempenho nas tarefas}
+
+\begin{quadro}[htb]
+\centering
+\caption{Conclusão das tarefas na Rodada 1}
+\label{quad:res_tarefas_r1}
+\footnotesize
+\begin{tabular}{c p{3.2cm} c c c p{2.6cm}}
+\toprule
+\textbf{Tarefa} & \textbf{Descrição resumida} & \textbf{P1} & \textbf{P2} &
+\textbf{P3} & \textbf{Tempo médio} \\
+\midrule
+T1 & Descoberta e escolha da trilha & --- & --- & --- & --- \\
+T2 & Leitura da tela de preparação & --- & --- & --- & --- \\
+T3 & Deslocamento ao \textit{checkpoint} & --- & --- & --- & --- \\
+T4 & Registro por QR Code & --- & --- & --- & --- \\
+T5 & Leitura do estado da atividade & --- & --- & --- & --- \\
+T6 & Suspensão e retomada & --- & --- & --- & --- \\
+T7 & Conclusão da trilha & --- & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Legenda: A = autônoma; D$n$ = com auxílio, grau $n$; F = falha.\\
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+\subsection{Episódios de atrito}
+
+% >>> [PREENCHER] Para cada episódio, redigir um parágrafo curto contendo:
+% a situação, a verbalização literal do participante (entre aspas), a
+% heurística tocada e a origem atribuída. Agrupar por tarefa.
+
+\begin{quadro}[htb]
+\centering
+\caption{Episódios de atrito registrados na Rodada 1}
+\label{quad:res_atritos_r1}
+\footnotesize
+\begin{tabular}{p{1.0cm} p{1.0cm} p{4.0cm} p{1.2cm} p{1.8cm} p{1.2cm}}
+\toprule
+\textbf{ID} & \textbf{Part.} & \textbf{Descrição} & \textbf{Heur.} &
+\textbf{Origem} & \textbf{Sev.} \\
+\midrule
+A01 & --- & \textit{[preencher]} & --- & --- & --- \\
+A02 & --- & \textit{[preencher]} & --- & --- & --- \\
+A03 & --- & \textit{[preencher]} & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Origem: I = interface; D = desafio proposto; F = infraestrutura;
+T = dívida técnica.\\
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+\subsection{Distribuição dos atritos por origem}
+
+% >>> [PREENCHER] Esta é a subseção que responde diretamente à questão de
+% pesquisa. Apresentar a contagem de episódios por categoria de origem e
+% discutir os casos de atribuição ambígua, isto é, aqueles em que a
+% verbalização do participante e a interpretação do observador divergiram.
+
+\begin{quadro}[htb]
+\centering
+\caption{Distribuição dos episódios de atrito por origem --- Rodada 1}
+\label{quad:res_origem_r1}
+\begin{tabular}{p{5.4cm} c c}
+\toprule
+\textbf{Origem do atrito} & \textbf{Episódios} & \textbf{Proporção} \\
+\midrule
+Interface & --- & --- \\
+Desafio proposto & --- & --- \\
+Infraestrutura & --- & --- \\
+Dívida técnica & --- & --- \\
+\midrule
+\textbf{Total} & --- & 100\,\% \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+\subsection{Achados da entrevista semiestruturada}
+
+% >>> [PREENCHER] Organizar por bloco do roteiro:
+%   (a) percepção geral e compreensão da proposta;
+%   (b) atribuição da dificuldade pelo próprio participante;
+%   (c) compreensão dos indicadores de estado;
+%   (d) reconhecimento de ícones --- reportar quantos e quais ícones foram
+%       corretamente identificados por participante;
+%   (e) modelo mental da validação por QR Code e percepção de confiança;
+%   (f) priorização espontânea de melhorias.
+
+\begin{quadro}[htb]
+\centering
+\caption{Reconhecimento de ícones --- Rodada 1}
+\label{quad:res_icones_r1}
+\begin{tabular}{p{5.0cm} c c c}
+\toprule
+\textbf{Elemento} & \textbf{P1} & \textbf{P2} & \textbf{P3} \\
+\midrule
+Recentralizar mapa & --- & --- & --- \\
+Bússola & --- & --- & --- \\
+Marcador de posição do usuário & --- & --- & --- \\
+Marcadores coloridos de \textit{checkpoint} & --- & --- & --- \\
+Botões circulares de ação & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Legenda: C = reconhecido corretamente; P = parcialmente; N = não reconhecido.\\
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+\subsection{Resultados do instrumento TAM}
+
+Conforme justificado na Seção~\ref{sec:instrumento_tam}, os escores da Rodada 1 são
+reportados de forma descritiva e individual, sem agregação inferencial.
+
+\begin{quadro}[htb]
+\centering
+\caption{Escores do instrumento TAM --- Rodada 1}
+\label{quad:res_tam_r1}
+\begin{tabular}{p{2.0cm} c c c c}
+\toprule
+\textbf{Item} & \textbf{P1} & \textbf{P2} & \textbf{P3} & \textbf{Mediana} \\
+\midrule
+PEOU1 & --- & --- & --- & --- \\
+PEOU2 & --- & --- & --- & --- \\
+PEOU3 & --- & --- & --- & --- \\
+PEOU4 & --- & --- & --- & --- \\
+\midrule
+PU1 & --- & --- & --- & --- \\
+PU2 & --- & --- & --- & --- \\
+PU3 & --- & --- & --- & --- \\
+PU4 & --- & --- & --- & --- \\
+\midrule
+ITU1 & --- & --- & --- & --- \\
+ITU2 & --- & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Escala Likert de sete pontos.\\
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+\subsection{Validação semântica do instrumento}
+
+% >>> [PREENCHER] Relatar, item a item, se houve dúvida de interpretação e
+% qual reformulação o participante produziu ao explicar o enunciado. Indicar
+% quais itens demandam revisão de redação antes da Rodada 2 e registrar a
+% redação revista.
+
+\section{Correções Implementadas}
+\label{sec:res_correcoes}
+
+% >>> [PREENCHER] Descrever cada correção, vinculando-a ao episódio de atrito
+% ou ao problema heurístico que a motivou. Incluir capturas de tela do antes e
+% do depois quando a alteração for visual.
+
+\begin{quadro}[htb]
+\centering
+\caption{Correções implementadas entre as rodadas}
+\label{quad:res_correcoes}
+\footnotesize
+\begin{tabular}{p{1.0cm} p{4.6cm} p{4.0cm} p{2.4cm}}
+\toprule
+\textbf{ID} & \textbf{Correção} & \textbf{Achado que a motivou} &
+\textbf{Camada alterada} \\
+\midrule
+C01 & \textit{[preencher]} & --- & --- \\
+C02 & \textit{[preencher]} & --- & --- \\
+C03 & \textit{[preencher]} & --- & --- \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+% >>> [PREENCHER] Registrar também os achados que NÃO geraram correção, com a
+% justificativa: atritos classificados como decorrentes do desafio proposto,
+% correções de custo incompatível com o prazo, ou problemas cuja solução
+% depende de infraestrutura externa ao projeto.
+
+\section{Rodada 2 --- Reavaliação após as Melhorias}
+\label{sec:res_rodada2}
+
+% >>> [PREENCHER] Replicar aqui a mesma estrutura de quadros da Rodada 1,
+% com os participantes P4 a P6. Antes disso, registrar explicitamente que as
+% condições foram replicadas: mesma trilha, mesma faixa de horário, mesmo
+% dispositivo, e informar a nova versão do aplicativo.
+
+\subsection{Caracterização dos participantes e das condições}
+
+\begin{quadro}[htb]
+\centering
+\caption{Perfil dos participantes da Rodada 2}
+\label{quad:res_perfil_r2}
+\footnotesize
+\begin{tabular}{p{1.0cm} p{1.0cm} p{2.8cm} p{2.6cm} p{2.4cm} p{2.0cm}}
+\toprule
+\textbf{ID} & \textbf{Idade} & \textbf{Ocupação} & \textbf{Proto-persona
+correspondente} & \textbf{Uso de apps de percurso} & \textbf{Esforço percebido
+(0--10)} \\
+\midrule
+P4 & --- & \textit{[preencher]} & --- & --- & --- \\
+P5 & --- & \textit{[preencher]} & --- & --- & --- \\
+P6 & --- & \textit{[preencher]} & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+\subsection{Desempenho nas tarefas}
+
+\begin{quadro}[htb]
+\centering
+\caption{Conclusão das tarefas na Rodada 2}
+\label{quad:res_tarefas_r2}
+\footnotesize
+\begin{tabular}{c p{3.2cm} c c c p{2.6cm}}
+\toprule
+\textbf{Tarefa} & \textbf{Descrição resumida} & \textbf{P4} & \textbf{P5} &
+\textbf{P6} & \textbf{Tempo médio} \\
+\midrule
+T1 & Descoberta e escolha da trilha & --- & --- & --- & --- \\
+T2 & Leitura da tela de preparação & --- & --- & --- & --- \\
+T3 & Deslocamento ao \textit{checkpoint} & --- & --- & --- & --- \\
+T4 & Registro por QR Code & --- & --- & --- & --- \\
+T5 & Leitura do estado da atividade & --- & --- & --- & --- \\
+T6 & Suspensão e retomada & --- & --- & --- & --- \\
+T7 & Conclusão da trilha & --- & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+\subsection{Episódios de atrito e escores do instrumento}
+
+% >>> [PREENCHER] Reproduzir os quadros de atritos, de distribuição por origem,
+% de reconhecimento de ícones e de escores TAM, com os rótulos
+% quad:res_atritos_r2, quad:res_origem_r2, quad:res_icones_r2 e
+% quad:res_tam_r2.
+
+\section{Comparação entre as Rodadas}
+\label{sec:res_comparacao}
+
+% >>> [PREENCHER] ATENÇÃO À NATUREZA DA AFIRMAÇÃO. Com três participantes por
+% rodada, não cabe teste de hipótese nem afirmação de significância. A
+% comparação legítima é qualitativa e rastreável, na forma:
+% "o atrito A0x, observado em 3 dos 3 participantes da Rodada 1, não se
+% manifestou em nenhum dos 3 participantes da Rodada 2, após a correção C0y".
+% Evitar expressões como "houve melhora estatisticamente relevante".
+
+\begin{quadro}[htb]
+\centering
+\caption{Persistência dos atritos entre as rodadas}
+\label{quad:res_comparacao}
+\footnotesize
+\begin{tabular}{p{1.0cm} p{3.8cm} c c p{2.4cm} p{2.0cm}}
+\toprule
+\textbf{ID} & \textbf{Atrito} & \textbf{R1} & \textbf{R2} &
+\textbf{Correção aplicada} & \textbf{Situação} \\
+\midrule
+A01 & \textit{[preencher]} & --- & --- & --- & --- \\
+A02 & \textit{[preencher]} & --- & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Situação: R = resolvido; P = persistente; N = novo; NA = não aplicável.\\
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+% >>> [PREENCHER] Comentar também os atritos NOVOS surgidos na Rodada 2. Sua
+% ocorrência não invalida o trabalho: é achado esperado em projeto iterativo e
+% deve ser reportado com a mesma transparência.
+
+\section{Matriz de Rastreabilidade Consolidada}
+\label{sec:res_matriz}
+
+A matriz apresentada no Quadro~\ref{quad:res_matriz} materializa a contribuição
+central enunciada na Seção~\ref{sec:problema}, ao vincular cada problema observado
+à heurística violada, à decisão de engenharia que o originou, ao construto do
+instrumento de aceitação potencialmente impactado e à correção proposta ou
+aplicada.
+
+\begin{quadro}[htb]
+\centering
+\caption{Matriz de rastreabilidade entre atrito, heurística, decisão técnica e construto}
+\label{quad:res_matriz}
+\scriptsize
+\begin{tabular}{p{0.8cm} p{2.4cm} p{1.0cm} p{2.4cm} p{1.2cm} p{1.2cm} p{2.2cm}}
+\toprule
+\textbf{ID} & \textbf{Problema} & \textbf{Heur.} & \textbf{Decisão de origem} &
+\textbf{Origem} & \textbf{Construto} & \textbf{Correção} \\
+\midrule
+P01 & --- & --- & --- & --- & --- & --- \\
+P02 & --- & --- & --- & --- & --- & --- \\
+P03 & --- & --- & --- & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\begin{flushleft}
+Fonte: Elaborado pelo autor.
+\end{flushleft}
+\end{quadro}
+
+\section{Discussão}
+\label{sec:res_discussao}
+
+% >>> [PREENCHER] Organizar a discussão em torno de quatro eixos:
+%
+% (a) RESPOSTA À QUESTÃO DE PESQUISA. Retomar a pergunta da Seção 1.2 e
+%     responder com base na distribuição dos atritos por origem: em que medida
+%     a interface atuou como facilitadora, e a classificação proposta mostrou-se
+%     operacionalizável na prática?
+%
+% (b) VERIFICAÇÃO DAS HIPÓTESES DO QUADRO 3.11. As limitações declaradas no
+%     Capítulo 3 --- servimento de imagens, dependência de conectividade, tela
+%     de perfil não integrada --- manifestaram-se como atritos observáveis?
+%     Confirmar ou refutar cada uma, item a item.
+%
+% (c) CONVERGÊNCIA ENTRE OS INSTRUMENTOS. Os atritos verbalizados encontraram
+%     eco nos escores de PEOU? Onde houve divergência entre o observado e o
+%     declarado, discutir a possível causa.
+%
+% (d) CONFRONTO COM A LITERATURA. Comparar os achados com os trabalhos
+%     relacionados levantados na Seção 2.8.
+
+\section{Considerações Finais}
+\label{sec:res_finais}
+
+% >>> [PREENCHER] Sintetizar os principais achados em um parágrafo e anunciar
+% o capítulo de conclusão.
